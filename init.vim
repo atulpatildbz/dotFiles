@@ -209,3 +209,12 @@ nnoremap <leader>w :call SaveFile() <CR>
 nnoremap <leader>q :q! <CR>
 
 nnoremap <leader>cr :CocRestart <CR>
+
+nnoremap <leader>f :Rg <C-R><C-W> -g *.
+nnoremap <leader>b :Buf <CR>
+
+
+
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
