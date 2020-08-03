@@ -35,7 +35,7 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'brooth/far.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'jmcantrell/vim-virtualenv'
-"Plug 'ThePrimeagen/vim-be-good', {'do': '.\install.sh'}
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 " Initialize plugin system
 call plug#end()
 "call plug#begin('~/.vim/plugged')
@@ -218,3 +218,5 @@ nnoremap <leader>b :Buf <CR>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+imap <C-j> <Plug>(coc-snippets-expand-jump)
