@@ -15,9 +15,10 @@ set undofile
 imap jj <Esc>
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" commenting nerdtree because started using coc-explore
+"Plug 'scrooloose/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -31,11 +32,13 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'unkiwii/vim-nerdtree-sync'
+"Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'brooth/far.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'janko/vim-test'
+Plug 'Yggdroot/indentLine'
 " Initialize plugin system
 call plug#end()
 "call plug#begin('~/.vim/plugged')
@@ -148,33 +151,33 @@ autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'src', 'oracl
 "----------------------------------------
 
 " Toggle NERDTree
-nmap <C-b> :NERDTreeToggle<CR>
+"nmap <C-b> :NERDTreeToggle<CR>
 nmap <C-/>   <Plug>NERDCommenterToggle
 
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
-let g:NERDTreeStatusline = ''
+"let g:NERDTreeShowHidden = 1
+"let g:NERDTreeMinimalUI = 1
+"let g:NERDTreeIgnore = []
+"let g:NERDTreeStatusline = ''
 " Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a
-" modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-        NERDTreeFind
-        wincmd p
-    endif
-endfunction
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" sync open file with NERDTree
+"" " Check if NERDTree is open or active
+"function! IsNERDTreeOpen()
+"    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+"endfunction
+"
+"" Call NERDTreeFind iff NERDTree is active, current window contains a
+"" modifiable
+"" file, and we're not in vimdiff
+"function! SyncTree()
+"    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"        NERDTreeFind
+"        wincmd p
+"    endif
+"endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
+"autocmd BufEnter * call SyncTree()
 
 " fix imports on python file open
 " this is needed because there isn't a way to set multiple source root like
@@ -213,10 +216,15 @@ nnoremap <leader>cr :CocRestart <CR>
 nnoremap <leader>f :Rg <C-R><C-W> -g *.
 nnoremap <leader>b :Buf <CR>
 
-
-
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+nnoremap <leader>d "_d
+nnoremap <leader>ci "_ci
+nnoremap <leader>ca "_ca
+xnoremap <leader>p "_dP
+
+nnoremap <C-n> :tabnew <CR>
+nmap <C-b> :CocCommand explorer<CR>
+
