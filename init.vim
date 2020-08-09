@@ -37,7 +37,8 @@ Plug 'brooth/far.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-Plug 'janko/vim-test'
+"Plug 'janko/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'Yggdroot/indentLine'
 " Initialize plugin system
 call plug#end()
@@ -46,11 +47,15 @@ call plug#end()
 "call plug#end()
 
 colorscheme gruvbox
+set guifont=DejaVu\ Sans\ Mono:h10
 set background=dark
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+"on search with / make it case sensetive only if it contains capital letter
+set ignorecase
+set smartcase
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " coc config
@@ -135,7 +140,11 @@ endfunction
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
 
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
@@ -213,7 +222,6 @@ nnoremap <leader>q :q! <CR>
 
 nnoremap <leader>cr :CocRestart <CR>
 
-nnoremap <leader>f :Rg <C-R><C-W> -g *.
 nnoremap <leader>b :Buf <CR>
 
 let g:airline#extensions#tabline#enabled = 1
@@ -225,6 +233,31 @@ nnoremap <leader>ci "_ci
 nnoremap <leader>ca "_ca
 xnoremap <leader>p "_dP
 
+nnoremap <leader>f :Rg <C-R><C-W> -g *.
 nnoremap <C-n> :tabnew <CR>
 nmap <C-b> :CocCommand explorer<CR>
 
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>tf :TestFile<CR>
+
+"transform path for jest (windows specific)
+function! JestTransform(cmd) abort
+  let correct_path = substitute(a:cmd, '\\', '\\\\', 'g')
+  let correct_call = substitute(correct_path, '\/', '\\', 'g')
+  return correct_call
+endfunction
+
+let g:test#custom_transformations = {'jest': function('JestTransform')}
+let g:test#transformation = 'jest'
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+map <C-h> :%s///gcI<c-b><right><right><right><C-R><C-W>
