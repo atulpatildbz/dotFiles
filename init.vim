@@ -45,6 +45,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'vim-scripts/anwolib'
 
 " Initialize plugin system
 call plug#end()
@@ -230,7 +231,7 @@ function! SaveFile()
         w!
     endif
 endfunction
-nnoremap <leader>w :call SaveFile() <CR>
+nnoremap <leader>w :KeepView call SaveFile() <CR>
 nnoremap <leader>q :q! <CR>
 
 nnoremap <leader>cr :CocRestart <CR>
