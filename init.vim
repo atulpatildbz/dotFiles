@@ -10,6 +10,7 @@ set incsearch
 set clipboard=unnamed
 set undodir=~/.vim/undodir
 set undofile
+set cursorline
 
 " mappings
 imap jj <Esc>
