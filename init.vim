@@ -25,7 +25,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'morhetz/gruvbox'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 "Plug 'haya14busa/vim-easymotion'
 Plug 'easymotion/vim-easymotion'
@@ -41,14 +40,28 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 "Plug 'janko/vim-test'
 Plug 'vim-test/vim-test'
 Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-fugitive'
+"colorschemes
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+Plug 'rafi/awesome-vim-colorschemes'
+
 " Initialize plugin system
 call plug#end()
 "call plug#begin('~/.vim/plugged')
 "Plug 'yuezk/vim-js'
 "call plug#end()
 
-colorscheme gruvbox
-set guifont=DejaVu\ Sans\ Mono:h10
+"just toggle the one you want to use
+"colorscheme gruvbox
+"colorscheme onedark
+colorscheme apprentice
+
+"set guifont=DejaVu\ Sans\ Mono:h10
+GuiFont! DejaVu\ Sans\ Mono:h10
+"use GuiTabline option to hide nvim-qt's tab. this can also be done with
+"passing --no-ext-tabline as argumentn while launching
+" GuiTabline 0
 set background=dark
 set smartindent
 set tabstop=4
@@ -94,7 +107,6 @@ nnoremap <SPACE> <Nop>
 noremap <C-P> :GFiles! --cached --others --exclude-standard <CR>
 "noremap <C-I> :GFiles! --cached --others --exclude-standard -i <CR>
 map! <S-Insert> <C-R>+
-
 
 " Use tab for trigger completion with characters ahead and navigate.
 " " Use command ':verbose imap <tab>' to make sure tab is not mapped by other
