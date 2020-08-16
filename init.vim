@@ -276,3 +276,5 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 map <C-h> :%s///gcI<c-b><right><right><right><C-R><C-W>
 map <Leader> <Plug>(easymotion-prefix)
+" map ctrl-t to open current file in new tab
+map <C-T> :tab split<Cr>
