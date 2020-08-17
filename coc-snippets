@@ -56,3 +56,32 @@ const mapStateToProps = ({}) => ({})
 
 export default connect(mapStateToProps)($1);
 endsnippet
+
+
+# arrow function method
+snippet met "Arrow function method" b
+$1 = () => {}
+endsnippet
+
+# test
+snippet test "UT it snippet" b
+it("should $1", () => { $2 });
+endsnippet
+
+snippet desc "UT desc snippet" b
+desc("$1", () => { $2 });
+endsnippet
+snippet beforeEach "UT beforeEach snippet" b
+beforeEach(() => { wrapper=$1 });
+endsnippet
+snippet afterEach "UT afterEach snippet" b
+afterEach(() => { wrapper = null; $1 });
+endsnippet
+
+snippet cp "const from props" b
+const {$1} = this.props;
+endsnippet
+
+snippet cs "const from state" b
+const {$1} = this.state;
+endsnippet
