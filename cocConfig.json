@@ -1,4 +1,5 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["javascript", "css"],
+    "yank.highlight.duration": 200,
     "python.jediEnabled": false
 }
