@@ -108,6 +108,7 @@ nnoremap <SPACE> <Nop>
 noremap <C-P> :GFiles! --cached --others --exclude-standard <CR>
 "noremap <C-I> :GFiles! --cached --others --exclude-standard -i <CR>
 map! <S-Insert> <C-R>+
+tnoremap <S-Insert> <c-\><c-n>"+pi
 
 " Use tab for trigger completion with characters ahead and navigate.
 " " Use command ':verbose imap <tab>' to make sure tab is not mapped by other
@@ -278,4 +279,7 @@ map <C-h> :%s///gcI<c-b><right><right><right><C-R><C-W>
 map <Leader> <Plug>(easymotion-prefix)
 " map ctrl-t to open current file in new tab
 map <C-T> :tab split<Cr>
+
+tnoremap <S-Space> <Space>
+tnoremap <leader><Esc> <C-\><C-n>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
