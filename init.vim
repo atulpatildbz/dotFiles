@@ -282,4 +282,6 @@ map <C-T> :tab split<Cr>
 
 tnoremap <S-Space> <Space>
 tnoremap <leader><Esc> <C-\><C-n>
+nmap <TAB> :bnext <CR>
+nmap <S-TAB> :bprevious <CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
