@@ -140,7 +140,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-H> <C-W><C-H>
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
@@ -284,6 +284,6 @@ map <C-T> :tab split<Cr>
 
 tnoremap <S-Space> <Space>
 tnoremap <leader><Esc> <C-\><C-n>
-nmap <TAB> :bnext <CR>
+nmap <C-TAB> :bnext <CR>
 nmap <S-TAB> :bprevious <CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
