@@ -207,33 +207,34 @@ nmap <C-/>   <Plug>NERDCommenterToggle
 " fix imports on python file open
 " this is needed because there isn't a way to set multiple source root like
 " it is in pycharm
-function! FixPythonImport()
-    :silent! %s/from inSyncLib/from src.inSyncLib/gI
-    :silent! %s/from roboWWWLib/from src.cportal.cportalserver.roboWWWLib/gI
-    :silent! %s/from roboPanel/from src.cportal.cportalserver.roboPanel/gI
-    :silent! %s/from roboLib/from src.roboCloud.roboLib/gI
-    :silent! %s/from oracleproduct/from src.oracleproduct/gI
-endfunction
-au BufReadPost *.py call FixPythonImport()
+"function! FixPythonImport()
+"    :silent! %s/from inSyncLib/from src.inSyncLib/gI
+"    :silent! %s/from roboWWWLib/from src.cportal.cportalserver.roboWWWLib/gI
+"    :silent! %s/from roboPanel/from src.cportal.cportalserver.roboPanel/gI
+"    :silent! %s/from roboLib/from src.roboCloud.roboLib/gI
+"    :silent! %s/from oracleproduct/from src.oracleproduct/gI
+"endfunction
+"au BufReadPost *.py call FixPythonImport()
 
-function! SaveFile()
-    if (index(['python'], &filetype) >= 0)
-        :silent! %s/from src.inSyncLib/from inSyncLib/gI
-        :silent! %s/from src.cportal.cportalserver.roboWWWLib/from roboWWWLib/gI
-        :silent! %s/from src.cportal.cportalserver.roboPanel/from roboPanel/gI
-        :silent! %s/from src.roboCloud.roboLib/from roboLib/gI
-        :silent! %s/from src.oracleproduct/from oracleproduct/gI
-        w!
-        :silent! %s/from inSyncLib/from src.inSyncLib/gI
-        :silent! %s/from roboWWWLib/from src.cportal.cportalserver.roboWWWLib/gI
-        :silent! %s/from roboPanel/from src.cportal.cportalserver.roboPanel/gI
-        :silent! %s/from roboLib/from src.roboCloud.roboLib/gI
-        :silent! %s/from oracleproduct/from src.oracleproduct/gI
-    else
-        w!
-    endif
-endfunction
-nnoremap <leader>w :KeepView call SaveFile() <CR>
+"function! SaveFile()
+"    if (index(['python'], &filetype) >= 0)
+"        :silent! %s/from src.inSyncLib/from inSyncLib/gI
+"        :silent! %s/from src.cportal.cportalserver.roboWWWLib/from roboWWWLib/gI
+"        :silent! %s/from src.cportal.cportalserver.roboPanel/from roboPanel/gI
+"        :silent! %s/from src.roboCloud.roboLib/from roboLib/gI
+"        :silent! %s/from src.oracleproduct/from oracleproduct/gI
+"        w!
+"        :silent! %s/from inSyncLib/from src.inSyncLib/gI
+"        :silent! %s/from roboWWWLib/from src.cportal.cportalserver.roboWWWLib/gI
+"        :silent! %s/from roboPanel/from src.cportal.cportalserver.roboPanel/gI
+"        :silent! %s/from roboLib/from src.roboCloud.roboLib/gI
+"        :silent! %s/from oracleproduct/from src.oracleproduct/gI
+"    else
+"        w!
+"    endif
+"endfunction
+"nnoremap <leader>w :KeepView call SaveFile() <CR>
+nnoremap <leader>w :w! <CR>
 nnoremap <leader>q :q! <CR>
 
 nnoremap <leader>cr :CocRestart <CR>
