@@ -107,8 +107,7 @@ let g:NERDTreeIgnore = ['^node_modules$']
 
 
 nnoremap <SPACE> <Nop>
-noremap <C-P> :GFiles! --cached --others --exclude-standard <CR>
-"noremap <C-I> :GFiles! --cached --others --exclude-standard -i <CR>
+noremap <C-P> :GFiles --cached --others --exclude-standard <CR>
 map! <S-Insert> <C-R>+
 tnoremap <S-Insert> <c-\><c-n>"+pi
 
