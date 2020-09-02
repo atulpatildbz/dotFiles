@@ -41,6 +41,7 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'vim-test/vim-test'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
+Plug 'stsewd/fzf-checkout.vim'
 "colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
