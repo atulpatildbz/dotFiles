@@ -46,7 +46,7 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/anwolib'
-
+Plug 'josegamez82/starrynight'
 " Initialize plugin system
 call plug#end()
 "call plug#begin('~/.vim/plugged')
@@ -56,6 +56,7 @@ call plug#end()
 "just toggle the one you want to use
 "colorscheme gruvbox
 "colorscheme onedark
+"colorscheme starrynight
 colorscheme apprentice
 
 "set guifont=DejaVu\ Sans\ Mono:h10
