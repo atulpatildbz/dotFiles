@@ -291,3 +291,8 @@ nmap <C-TAB> :bnext <CR>
 nmap <S-TAB> :bprevious <CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 :command RemoveDuplicate ::%s/^\(.*\)\(\n\1\)\+$/\1/ge
+
+" List contents of all registers (that typically contain pasteable text).
+nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+
+
