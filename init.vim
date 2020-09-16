@@ -48,6 +48,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/anwolib'
 Plug 'josegamez82/starrynight'
+Plug 'habamax/vim-gruvbit'
 " Initialize plugin system
 call plug#end()
 "call plug#begin('~/.vim/plugged')
@@ -55,6 +56,7 @@ call plug#end()
 "call plug#end()
 
 "just toggle the one you want to use
+set termguicolors
 "colorscheme gruvbox
 "colorscheme onedark
 "colorscheme starrynight
