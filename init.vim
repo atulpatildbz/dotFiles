@@ -290,3 +290,4 @@ tnoremap <leader><Esc> <C-\><C-n>
 nmap <C-TAB> :bnext <CR>
 nmap <S-TAB> :bprevious <CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+:command RemoveDuplicate ::%s/^\(.*\)\(\n\1\)\+$/\1/ge
