@@ -95,10 +95,11 @@ set hidden " Some servers have issues with backup files, see #649 set nobackup s
 "diagnostic messages when it's default 4000.
 set updatetime=300
 
-" augroup javascript_folding
-"    au!
-"    au FileType javascript setlocal foldmethod=syntax
-"augroup END
+augroup javascript_folding
+   au!
+   au FileType javascript setlocal foldmethod=syntax
+   set foldlevel=99
+augroup END
 
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
