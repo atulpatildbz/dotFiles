@@ -1,0 +1,257 @@
+" take config from current directory
+syntax on
+set exrc
+set relativenumber
+set nu
+" remove this if it's slowing down
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+
+set shiftwidth=4
+set expandtab
+set smartindent
+set smartcase
+set ignorecase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set signcolumn=yes
+set clipboard=unnamed
+set cursorline
+"set paste
+
+call plug#begin('~/.vim/plugged')
+Plug 'gruvbox-community/gruvbox'
+Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-test/vim-test'
+"'Plug 'kyazdani42/nvim-tree.lua'
+"Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'Th3Whit3Wolf/one-nvim'
+Plug 'tpope/vim-commentary'
+Plug 'tmsvg/pear-tree'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'nvim-lua/completion-nvim'
+call plug#end()
+
+let mapleader = " "
+imap jk <Esc>
+nnoremap <leader>w :w! <CR>
+nnoremap <leader>q :q! <CR>
+nnoremap <leader>n :noh<cr>
+nnoremap <C-P> :GFiles --cached --others --exclude-standard <CR>
+map! <S-Insert> <C-R>+
+nnoremap <C-n> :tabnew <CR>
+nnoremap <C-T> :tab split<Cr>
+nmap <silent> gd <Plug>(coc-definition)
+nnoremap <Leader>v :e $MYVIMRC<cr>
+nnoremap <leader>b :Buf <CR>
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>tf :TestFile<CR>
+
+" copy relative path
+nnoremap yp :let @+ = expand("%")<CR>
+" copy full path
+nnoremap <leader>Y :let @+ = expand("%:p")<CR>
+" copy just filename
+nnoremap yn :let @+ = expand("%:t")<CR>
+
+nnoremap <leader>d "_d
+nnoremap <leader>ci "_ci
+nnoremap <leader>ca "_ca
+nnoremap <leader>f :Rg <C-R><C-W>
+xnoremap <leader>p "_dP
+
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+
+"autoclose brackets
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+
+" Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'}
+            \ }
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+
+" Pear Tree is enabled for all filetypes by default:
+let g:pear_tree_ft_disabled = []
+
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 1
+
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 0
+let g:pear_tree_smart_closers = 0
+let g:pear_tree_smart_backspace = 0
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+"tnoremap <S-Space> <Space>
+tnoremap <leader><Esc> <C-\><C-n>
+
+colorscheme gruvbox
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+autocmd FileType apache setlocal commentstring=#\ %s
+
+:command RemoveDuplicate ::%s/^\(.*\)\(\n\1\)\+$/\1/ge
+
+"lua << EOF 
+"local nvim_lsp = require('lspconfig')
+"local servers = { "pyright", "tsserver"}
+"
+"local on_attach = function(client, bufnr)
+  "local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  "local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+"
+  "buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+"
+  "-- Mappings.
+  "local opts = { noremap=true, silent=true }
+  "buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  "buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  "buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  "buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  "buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  "buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  "buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  "buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  "buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  "buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  "buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  "buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  "buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  "buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  "buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+"
+  "-- Set some keybinds conditional on server capabilities
+  "if client.resolved_capabilities.document_formatting then
+    "buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  "elseif client.resolved_capabilities.document_range_formatting then
+    "buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  "end
+  "
+  "-- Set autocommands conditional on server_capabilities
+  "if client.resolved_capabilities.document_highlight then
+    "require('lspconfig').util.nvim_multiline_command [[
+      ":hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+      ":hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+      ":hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+      "augroup lsp_document_highlight
+        "autocmd!
+        "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        "autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      "augroup END
+    "]]
+  "end
+"end
+"
+"for _, lsp in ipairs(servers) do
+    "nvim_lsp[lsp].setup { on_attach = on_attach }
+"end
+"EOF 
+  "
+"" Use completion-nvim in every buffer
+"autocmd BufEnter * lua require'completion'.on_attach()
+
+
+""""""browse tree settings
+
+"let g:nvim_tree_side = 'left' "left by default
+"let g:nvim_tree_width = 40 "30 by default
+"let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
+"let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+"let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+"let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+"let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+"let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+"let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
+"let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+"let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+"let g:nvim_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
+"let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree when opening a file
+"let g:nvim_tree_show_icons = {
+    "\ 'git': 1,
+    "\ 'folders': 0,
+    "\ 'files': 0,
+    "\ }
+"If 0, do not show the icons for one of 'git' 'folder' and 'files'
+"1 by default, notice that if 'files' is 1, it will only display
+"if nvim-web-devicons is installed and on your runtimepath
+
+" You can edit keybindings be defining this variable
+" You don't have to define all keys.
+" NOTE: the 'edit' key will wrap/unwrap a folder and open a file
+"let g:nvim_tree_bindings = {
+    "\ 'edit':            ['<CR>', 'o'],
+    "\ 'edit_vsplit':     '<C-v>',
+    "\ 'edit_split':      '<C-x>',
+    "\ 'edit_tab':        '<C-t>',
+    "\ 'close_node':      ['<S-CR>', '<BS>'],
+    "\ 'toggle_ignored':  'I',
+    "\ 'toggle_dotfiles': 'H',
+    "\ 'refresh':         'R',
+    "\ 'preview':         '<Tab>',
+    "\ 'cd':              '<C-]>',
+    "\ 'create':          'a',
+    "\ 'remove':          'd',
+    "\ 'rename':          'r',
+    "\ 'cut':             'x',
+    "\ 'copy':            'c',
+    "\ 'paste':           'p',
+    "\ 'prev_git_item':   '[c',
+    "\ 'next_git_item':   ']c',
+    "\ }
+
+" Disable default mappings by plugin
+" Bindings are enable by default, disabled on any non-zero value
+" let nvim_tree_disable_keybindings=1
+
+nnoremap <C-b> :CocCommand explorer<CR>
+"nnoremap <leader>n :NvimTreeFindFile<CR>
+" NvimTreeOpen and NvimTreeClose are also available if you need them
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+
+""""""
+
+
+
+""lightline
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+      "\ 'active': {
+      "\   'left': [ [ 'mode', 'paste' ],
+      "\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      "\ },
+      "\ 'component_function': {
+      "\   'gitbranch': 'FugitiveHead'
+      "\ },
+      "\ }
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
