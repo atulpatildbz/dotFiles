@@ -1,3 +1,6 @@
+#[user]
+    #email = 
+    #name = 
 [alias]
     co = checkout
     s = status
