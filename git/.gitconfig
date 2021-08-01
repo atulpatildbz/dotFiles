@@ -1,0 +1,8 @@
+[user]
+	email = atul.patil@druva.com
+	name = Atul Patil
+[alias]
+    co = checkout
+    s = status
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    po = "!git push -u origin $(git branch-name)"
