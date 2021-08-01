@@ -2,13 +2,12 @@
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
   "editor.minimap.enabled": false,
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "editor.formatOnSave": false,
   "terminal.integrated.scrollback": 2000,
   "explorer.confirmDelete": false,
   "files.eol": "\n",
-  "diffEditor.ignoreTrimWhitespace": false,
   "tabnine.experimentalAutoImports": true,
   // save and run in case prettier fails
   "saveAndRun": {
@@ -47,6 +46,10 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "s"]
+    },
+    {
       "before": ["<space>", "d"],
       "after": ["\"", "_", "d"]
     },
@@ -84,11 +87,23 @@
       "commands": ["workbench.action.increaseViewSize"]
     },
     {
+      "before": ["<space>", "<left>"],
+      "commands": ["workbench.action.decreaseViewSize"]
+    },
+    {
+      "before": ["<space>", "<up>"],
+      "commands": ["workbench.action.minimizeOtherEditors"]
+    },
+    {
+      "before": ["<space>", "<down>"],
+      "commands": ["workbench.action.evenEditorWidths"]
+    },
+    {
       "before": ["C-b"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": ["<leader>", "t", "f"],
+      "before": ["<space>", "t", "f"],
       "after": [],
       "commands": [
         { "command": "runInTerminal.run", "args": { "name": "f" } },
@@ -96,16 +111,16 @@
       ]
     },
     {
-      "before": ["<leader>", "t", "w"],
+      "before": ["<space>", "t", "w"],
       "after": [],
       "commands": [{ "command": "runInTerminal.run", "args": { "name": "w" } }]
     },
     {
-      "before": ["<leader>", "y", "p"],
+      "before": ["<space>", "y", "p"],
       "commands": ["copyRelativeFilePath"]
     },
     {
-      "before": ["<leader>", "Y"],
+      "before": ["<space>", "Y"],
       "commands": ["copyFilePath"]
     },
     {
@@ -115,12 +130,53 @@
     {
       "before": ["[", "c"],
       "commands": ["workbench.action.editor.previousChange"]
-    }
+    },
+    {
+      "before": ["<space>", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<space>", "b"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+// this undo redo is temporary fix, keep checking https://github.com/VSCodeVim/Vim/issues/1490 for solution
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["C-r"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["<tab>"],
+      "after": ["g", "t"]
+    },
+    {
+      "before": ["<S-tab>"],
+      "after": ["g", "T"]
+    },
+    {
+      "before": ["<S-y>"],
+      "after": ["y", "$"],
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["p"],
       "after": ["p", "g", "v", "y"]
+    },
+    {
+      "before": [">"],
+      "after": [">", "g", "v"],
+    },
+    {
+      "before": ["<"],
+      "after": ["<", "g", "v"],
     }
   ],
   "vim.easymotion": true,
@@ -129,15 +185,13 @@
   "vim.hlsearch": true,
   "vim.easymotionMarkerBackgroundColor": "#2a2604",
   "vim.easymotionMarkerForegroundColorOneChar": "#ebbba4",
-  "vim.leader": "<space>",
+  "vim.leader": "\\",
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
   "files.autoSave": "off",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb", "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
   "jestRunIt.jestCLIOptions": ["--coverage=false"],
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "runInTerminal.commands": [
@@ -149,5 +203,17 @@
     { "match": "test\\.js$", "name": "w", "cmd": "npm test -- --watch" }
   ],
   "window.title": "${dirty}${activeEditorMedium}${separator}${appName}",
-  "glassit.alpha": 245,
+  "glassit.alpha": 250,
+  "remote.SSH.remotePlatform": {
+  },
+  "remote.SSH.configFile": "C:\\Users\\atul.patil\\.ssh\\config",
+  "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.renderWhitespace": "none",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "diffEditor.ignoreTrimWhitespace": false
 }
