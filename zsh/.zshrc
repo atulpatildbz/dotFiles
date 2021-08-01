@@ -9,6 +9,7 @@ SAVEHIST=1000  # Save most-recent 1000 lines
 HISTFILE=~/.zsh_history
 
 # Created by newuser for 5.8
+# clone from git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/git.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
