@@ -42,6 +42,10 @@
     {
       "before": ["C-k"],
       "after": ["C-p"]
+    },
+    {
+      "before": ["C-j"],
+      "commands": ["editor.action.insertSnippet"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -139,7 +143,7 @@
       "before": ["<space>", "b"],
       "commands": ["bookmarks.listFromAllFiles"]
     },
-// this undo redo is temporary fix, keep checking https://github.com/VSCodeVim/Vim/issues/1490 for solution
+    // this undo redo is temporary fix, keep checking https://github.com/VSCodeVim/Vim/issues/1490 for solution
     {
       "before": ["u"],
       "commands": ["undo"]
@@ -158,12 +162,38 @@
     },
     {
       "before": ["<S-y>"],
-      "after": ["y", "$"],
+      "after": ["y", "$"]
     },
     {
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
+    {
+      "before": ["<space>", "l", "f"],
+      "after": ["A"],
+      "commands": [
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "snippet": "\n${TM_CURRENT_LINE/(\\s*)(\\w*)\\b.*/console.info($2)/}"
+          }
+        },
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": ["<space>", "l", "c"],
+      "after": ["A"],
+      "commands": [
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "snippet": "\nconsole.info(\"${CLIPBOARD}: \", ${CLIPBOARD})"
+          }
+        },
+        "extension.vim_escape"
+      ]
+    }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -172,11 +202,11 @@
     },
     {
       "before": [">"],
-      "after": [">", "g", "v"],
+      "after": [">", "g", "v"]
     },
     {
       "before": ["<"],
-      "after": ["<", "g", "v"],
+      "after": ["<", "g", "v"]
     }
   ],
   "vim.easymotion": true,
@@ -205,6 +235,17 @@
   "window.title": "${dirty}${activeEditorMedium}${separator}${appName}",
   "glassit.alpha": 250,
   "remote.SSH.remotePlatform": {
+    "172.16.21.186": "linux",
+    "172.16.20.236": "linux",
+    "172.16.21.186atulp": "linux",
+    "172.16.23.9juhi": "linux",
+    "172.16.13.113param": "linux",
+    "172.16.22.151": "linux",
+    "172.16.22.151atulp2": "linux",
+    "172.16.20.236aayush": "linux",
+    "172.16.23.102": "linux",
+    "172.16.21.69piyush2": "linux",
+    "172.16.23.102atulp2": "linux"
   },
   "remote.SSH.configFile": "C:\\Users\\atul.patil\\.ssh\\config",
   "[handlebars]": {
@@ -215,5 +256,6 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "terminal.integrated.fontFamily": "DejaVuSansMono Nerd Font"
 }
