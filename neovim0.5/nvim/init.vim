@@ -132,6 +132,7 @@ EOF
 lua << EOF
 -- require'lspconfig'.pyright.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.pylsp.setup{}
 EOF
 
 
