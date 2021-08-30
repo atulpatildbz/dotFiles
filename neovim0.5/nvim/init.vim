@@ -56,9 +56,23 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'tjdevries/colorbuddy.vim'
+    " Plug 'tjdevries/gruvbuddy.nvim'
+
+    " Plug 'rktjmp/lush.nvim'
+    " Plug 'ellisonleao/gruvbox.nvim'
+    Plug 'folke/lsp-colors.nvim'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 
 colorscheme PaperColor
+" lua require('colorbuddy').colorscheme('gruvbuddy')
+" set background=dark " or light if you want light mode
+
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = '0'
+colorscheme gruvbox
+set background=dark
 
 let mapleader = " "
 imap jk <Esc>l
@@ -150,3 +164,11 @@ require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pylsp.setup{}
 EOF
 
+lua << EOF
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})
+EOF
