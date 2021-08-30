@@ -54,6 +54,8 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     Plug 'tomtom/tcomment_vim'
     Plug 'lewis6991/gitsigns.nvim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme PaperColor
@@ -94,6 +96,9 @@ nnoremap <Leader>rg :lua require'telescope.builtin'.live_grep{}<CR>
 
 " pick color scheme
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
+
+" using fzf for now. keep checking if telescope works in future
+nnoremap <Leader>f :Rg <C-R><C-W>
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
