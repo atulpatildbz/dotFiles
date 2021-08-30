@@ -116,6 +116,14 @@ nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
+nnoremap Y y$
+" copy relative path
+nnoremap yp :let @+ = expand("%")<CR>
+" copy full path
+nnoremap <leader>Y :let @+ = expand("%:p")<CR>
+" copy just filename
+nnoremap yn :let @+ = expand("%:t")<CR>
+
 
 """
 lua <<EOF
@@ -135,5 +143,3 @@ require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pylsp.setup{}
 EOF
 
-
-"require'lspconfig'.pylsp.setup{}
