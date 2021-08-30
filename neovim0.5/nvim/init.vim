@@ -18,7 +18,7 @@ set incsearch
 set signcolumn=yes
 "set clipboard=unnamed
 set cursorline
-set mouse=a
+" set mouse=a
 
 call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/plenary.nvim'
@@ -56,6 +56,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'nvim-lua/completion-nvim'
+
     Plug 'tjdevries/colorbuddy.vim'
     " Plug 'tjdevries/gruvbuddy.nvim'
 
@@ -148,12 +150,23 @@ vnoremap > >gv
 
 tnoremap <leader><Esc> <C-\><C-n>
 
+" Completing settings
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
 """
 lua <<EOF
 require("lsp")
 require("treesitter")
 require("statusbar")
-require("completion")
+-- require("_completion")
 require("_gitsigns")
 EOF
 """
@@ -162,8 +175,22 @@ EOF
 
 lua << EOF
 -- require'lspconfig'.pyright.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.tsserver.setup{}
+-- require'lspconfig'.pylsp.setup{}
+local nvim_lsp = require('lspconfig')
+local on_attach = require('completion').on_attach
+local servers = {
+    'tsserver',
+    'pylsp',
+    }
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        }
+    }
+end
 EOF
 
 lua << EOF
