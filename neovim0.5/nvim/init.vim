@@ -62,6 +62,8 @@ colorscheme PaperColor
 
 let mapleader = " "
 imap jk <Esc>l
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 nnoremap <leader>w :w! <CR>
 nnoremap <leader>q :q! <CR>
 nnoremap <leader>n :noh<cr>
@@ -125,8 +127,8 @@ nnoremap <leader>Y :let @+ = expand("%:p")<CR>
 nnoremap yn :let @+ = expand("%:t")<CR>
 
 " Gitsigns mapping
-nnoremap hp :Gitsigns preview_hunk<CR>
-nnoremap hs :Gitsigns stage_hunk<CR>
+nnoremap <leader>hp :Gitsigns preview_hunk<CR>
+nnoremap <leader>hs :Gitsigns stage_hunk<CR>
 
 """
 lua <<EOF
