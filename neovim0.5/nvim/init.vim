@@ -124,6 +124,9 @@ nnoremap <leader>Y :let @+ = expand("%:p")<CR>
 " copy just filename
 nnoremap yn :let @+ = expand("%:t")<CR>
 
+" Gitsigns mapping
+nnoremap hp :Gitsigns preview_hunk<CR>
+nnoremap hs :Gitsigns stage_hunk<CR>
 
 """
 lua <<EOF
