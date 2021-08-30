@@ -144,6 +144,8 @@ nnoremap yn :let @+ = expand("%:t")<CR>
 nnoremap <leader>hp :Gitsigns preview_hunk<CR>
 nnoremap <leader>hs :Gitsigns stage_hunk<CR>
 
+vnoremap > >gv
+
 tnoremap <leader><Esc> <C-\><C-n>
 
 """
