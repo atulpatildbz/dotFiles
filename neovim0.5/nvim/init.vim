@@ -116,7 +116,7 @@ nnoremap <Leader>rg :lua require'telescope.builtin'.live_grep{}<CR>
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
 
 " using fzf for now. keep checking if telescope works in future
-nnoremap <Leader>f :Rg <C-R><C-W>
+nnoremap <Leader>f :Rg <C-R><C-W><CR>
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
