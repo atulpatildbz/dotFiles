@@ -20,6 +20,8 @@ set signcolumn=yes
 set cursorline
 " set mouse=a
 
+let g:netrw_bufsettings = 'relativenumber nu'
+
 call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
