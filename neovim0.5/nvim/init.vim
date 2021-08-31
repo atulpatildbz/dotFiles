@@ -67,6 +67,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     " Plug 'ellisonleao/gruvbox.nvim'
     Plug 'folke/lsp-colors.nvim'
     Plug 'morhetz/gruvbox'
+    Plug 'mhartington/formatter.nvim'
 call plug#end()
 
 colorscheme PaperColor
@@ -205,6 +206,22 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+
+require('formatter').setup({
+  filetype = {
+    javascript = {
+      -- prettier
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+          stdin = true
+        }
+      end
+    },
+  }
+})
 EOF
 
 lua << EOF
