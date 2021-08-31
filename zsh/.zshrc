@@ -22,3 +22,17 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 export CLICOLOR=1
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+cd /root/dcloud/phoenix_cloud/code/
+alias tmux="TERM=screen-256color-bce tmux"
+alias gstp="gst . -- ':!./src/devops' ':!./dockerbuild' ':!./src/roboCloud/roboLib/uploadlogslib/roboClientLogUtils.py' ':!./src/cportal/cportalserver/html/allrobocssfiles.html' ':!./src/cportal/cportalserver/html/robo_navigator.html'"
+
+c() {
+    if [ "$3" != "" ]
+    then
+        awk "NR==$1, NR==$2" $3
+    else
+        cat "$1"
+    fi
+}
