@@ -168,6 +168,11 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
+" overwriting these values by adding extra <Leader> so that it doesn't get in
+" the way of showing buffer keymapping
+let g:neomux_yank_buffer_map = "<Leader><Leader>by"
+let g:neomux_paste_buffer_map = "<Leader><Leader>bp"
+
 """
 lua <<EOF
 require("lsp")
