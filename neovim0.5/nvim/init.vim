@@ -146,8 +146,12 @@ nnoremap yn :let @+ = expand("%:t")<CR>
 nnoremap <leader>hp :Gitsigns preview_hunk<CR>
 nnoremap <leader>hs :Gitsigns stage_hunk<CR>
 
-autocmd FileType python nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc>
-autocmd FileType javascript nnoremap <buffer><silent><leader>l "lyiwoconsole.info(<C-R>l)<Esc>
+autocmd FileType python
+            \ nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> |
+            \ vnoremap <buffer><silent><leader>l "lyoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> 
+autocmd FileType javascript
+            \ nnoremap <buffer><silent><leader>l "lyiwoconsole.info(<C-R>l)<Esc> |
+            \ vnoremap <buffer><silent><leader>l "lyoconsole.info(<C-R>l)<Esc>
 
 vnoremap > >gv
 
