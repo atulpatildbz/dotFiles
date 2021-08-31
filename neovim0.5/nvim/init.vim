@@ -153,8 +153,8 @@ autocmd FileType python
             \ nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> |
             \ vnoremap <buffer><silent><leader>l "lyoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> 
 autocmd FileType javascript
-            \ nnoremap <buffer><silent><leader>l "lyiwoconsole.info(<C-R>l)<Esc> |
-            \ vnoremap <buffer><silent><leader>l "lyoconsole.info(<C-R>l)<Esc>
+            \ nnoremap <buffer><silent><leader>l "lyiwoconsole.info(<C-R>l);<Esc> |
+            \ vnoremap <buffer><silent><leader>l "lyoconsole.info(<C-R>l);<Esc>
 
 vnoremap > >gv
 
