@@ -70,6 +70,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'morhetz/gruvbox'
     Plug 'mhartington/formatter.nvim'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 colorscheme PaperColor
@@ -138,6 +139,8 @@ nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
+nmap <Leader>s <Plug>(easymotion-overwin-f)
+
 nnoremap Y y$
 " copy relative path
 nnoremap yp :let @+ = expand("%")<CR>
@@ -173,6 +176,9 @@ imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvi
 " the way of showing buffer keymapping
 let g:neomux_yank_buffer_map = "<Leader><Leader>by"
 let g:neomux_paste_buffer_map = "<Leader><Leader>bp"
+let g:neomux_winswap_map_prefix = "<Leader><Leader>s"
+let g:neomux_term_sizefix_map = "<Leader><Leader>sf"
+let g:neomux_start_term_map = "<Leader><Leader>sh"
 
 """
 lua <<EOF
