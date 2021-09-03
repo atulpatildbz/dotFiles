@@ -34,6 +34,7 @@ call plug#begin(stdpath('data') . 'vimplug')
 
     " Install snippet engine (This example installs [hrsh7th/vim-vsnip](https://github.com/hrsh7th/vim-vsnip))
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'hrsh7th/vim-vsnip-integ'
 
     " Install the buffer completion source
     Plug 'hrsh7th/cmp-buffer'
@@ -68,7 +69,6 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'folke/lsp-colors.nvim'
     Plug 'morhetz/gruvbox'
     Plug 'mhartington/formatter.nvim'
-    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 colorscheme PaperColor
@@ -146,10 +146,6 @@ nnoremap <leader>Y :let @+ = expand("%:p")<CR>
 " copy just filename
 nnoremap yn :let @+ = expand("%:t")<CR>
 
-" Gitsigns mapping
-nnoremap <leader>hp :Gitsigns preview_hunk<CR>
-nnoremap <leader>hs :Gitsigns stage_hunk<CR>
-
 autocmd FileType python
             \ nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> |
             \ vnoremap <buffer><silent><leader>l "lyoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> 
@@ -161,16 +157,17 @@ vnoremap > >gv
 
 tnoremap <leader><Esc> <C-\><C-n>
 
-" Completing settings
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+
+" Snippets mapping
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : pumvisible() ? "\<C-n>" : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvisible() ? "\<C-p>" : '<S-Tab>'
 
 " overwriting these values by adding extra <Leader> so that it doesn't get in
 " the way of showing buffer keymapping
