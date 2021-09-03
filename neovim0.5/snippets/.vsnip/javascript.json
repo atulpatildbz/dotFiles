@@ -6,6 +6,20 @@
     ],
     "description": "named arrow function"
   },
+  "Export ArrowFuntion": {
+    "prefix": ["eafn"],
+    "body": [
+      "export const $1 = () => {$2}"
+    ],
+    "description": "export named arrow function"
+  },
+  "Import statement": {
+    "prefix": ["imp"],
+    "body": [
+      "import {$2} from \"$1\""
+    ],
+    "description": "import statement"
+  },
   "for loop array": {
     "prefix": ["for"],
     "body": [
@@ -13,6 +27,21 @@
       "const ${3:elem} = $2[$1]; }"
     ],
     "description": "named arrow function"
+  },
+  "if condition": {
+    "prefix": ["if"],
+    "body": [
+      "if($1){$2}"
+    ],
+    "description": "if condition"
+  },
+  "ifelse": {
+    "prefix": ["ifelse"],
+    "body": [
+      "if($1){$2}",
+      "else{$3}"
+    ],
+    "description": "if else condition"
   }
 }
 
