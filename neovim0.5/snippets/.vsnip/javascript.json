@@ -1,0 +1,18 @@
+{
+  "ArrowFuntion": {
+    "prefix": ["afn"],
+    "body": [
+      "const $1 = () => {$2}"
+    ],
+    "description": "named arrow function"
+  },
+  "for loop array": {
+    "prefix": ["for"],
+    "body": [
+      "for(let ${1:index}=0; $1 < ${2:array}.length; $1++) {",
+      "const ${3:elem} = $2[$1]; }"
+    ],
+    "description": "named arrow function"
+  }
+}
+
