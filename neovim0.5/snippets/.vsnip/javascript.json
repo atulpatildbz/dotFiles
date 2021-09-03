@@ -2,14 +2,14 @@
   "ArrowFuntion": {
     "prefix": ["afn"],
     "body": [
-      "const $1 = () => {$2}"
+      "const $1 = ($2) => {$3}"
     ],
     "description": "named arrow function"
   },
   "Export ArrowFuntion": {
     "prefix": ["eafn"],
     "body": [
-      "export const $1 = () => {$2}"
+      "export const $1 = ($2) => {$3}"
     ],
     "description": "export named arrow function"
   },
