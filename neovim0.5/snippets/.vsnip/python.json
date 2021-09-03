@@ -1,0 +1,10 @@
+{
+  "SyncLog info": {
+    "prefix": ["sync"],
+    "body": [
+      "SyncLog.info(\"***AtulLog $1\")"
+    ],
+    "description": "Synclog.info for simple string print"
+  }
+}
+
