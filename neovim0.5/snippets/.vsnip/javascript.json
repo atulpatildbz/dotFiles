@@ -13,6 +13,13 @@
     ],
     "description": "export named arrow function"
   },
+  "Anonymous ArrowFuntion": {
+    "prefix": ["aafn"],
+    "body": [
+      "($1) => {$2}"
+    ],
+    "description": "anonymous arrow function"
+  },
   "Import statement": {
     "prefix": ["imp"],
     "body": [
