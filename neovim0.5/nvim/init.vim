@@ -69,6 +69,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'folke/lsp-colors.nvim'
     Plug 'morhetz/gruvbox'
     Plug 'mhartington/formatter.nvim'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 colorscheme PaperColor
