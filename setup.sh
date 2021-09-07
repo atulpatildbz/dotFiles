@@ -8,12 +8,9 @@
 # - oh-my-zsh
 # - powerlevel10k
 
-# create a temp directory in the home directory
-mkdir -p ~/temp
-cd ~/temp
-
+cd ~/
 # clone repository https://github.com/atulpatildbz/dotFiles.git
-git clone https://github.com/atulpatildbz/dotFiles.git
+git clone https://github.com/atulpatildbz/dotFiles.git ~/dotFiles
 
 # ask if user wants to install zsh from oh-my-zsh
 echo "Do you want to install zsh from oh-my-zsh? (y/n)"
@@ -23,22 +20,12 @@ read zsh
 if [ $zsh = "y" ]; then
     # install zsh from oh-my-zsh
     wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    # print installing zsh from oh-my-zsh
-    echo "Installing zsh from oh-my-zsh"
-    sh install.sh
 
-    # print installing powerlevel10k theme
-    echo "Installing powerlevel10k theme"
-    # install powerlevel10k theme
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    # create .zshrc file if it doesn't exist
+    if [ ! -f ~/.zshrc ]; then
+        touch ~/.zshrc
+    fi
 
-    # remove existing ZSH_THEME in .zshrc
-    sed -i '/ZSH_THEME/d' ~/.zshrc
-
-    # print applying powerlevel10k theme
-    echo "Applying powerlevel10k theme"
-    # set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc
-    echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\"" >> ~/.zshrc
 fi
 
 # ask user if they want to install nvm
@@ -50,8 +37,8 @@ if [ $nvm = "y" ]; then
     # install nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
-    # add NVM_DIR to .zshrc
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> ~/.zshrc
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.zshrc
 
     # source zshrc
     source ~/.zshrc
@@ -70,9 +57,6 @@ if [ "$neovimSetup" = "y" ]; then
     echo "Installing neovim"
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod u+x nvim.appimage
-
-    # add alias in .zshrc
-    echo "alias nvim='nvim.appimage'" >> ~/.zshrc
 
     # check if plug is installed
     if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
@@ -119,6 +103,10 @@ if [ "$neovimSetup" = "y" ]; then
 
     # print adding snippets
     echo "Adding snippets"
+    # rename ~/.vsnip if it exists
+    if [ -f ~/.vsnip ]; then
+        mv ~/.vsnip ~/.vsnip.bak
+    fi
     # create symbolic link to ~/dotFiles/neovim0.5/snippets/.vsnip in ~/
     ln -s ~/dotFiles/neovim0.5/snippets/.vsnip ~/
 fi
@@ -128,8 +116,8 @@ if [ ! -f ~/.local/bin/rg ]; then
     # print "Installing ripgrep"
     echo "Installing ripgrep"
     # install ripgrep
-    $ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-    $ sudo dpkg -i ripgrep_12.1.1_amd64.deb
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+    sudo dpkg -i ripgrep_12.1.1_amd64.deb
 fi
 
 # create a symbolic link to ~/dotFiles/tmux.conf in ~/.tmux.conf
@@ -156,4 +144,34 @@ if [ -f ~/.gitconfig ]; then
     ln -s ~/dotFiles/git/gitconfig ~/.gitconfig
     # print gitconfig done
     echo "gitconfig done"
+fi
+
+# if zsh is "y" then run install.sh
+if [ $zsh = "y" ]; then
+    # print installing zsh from oh-my-zsh
+    echo "Installing zsh from oh-my-zsh"
+    sh install.sh
+
+    # print installing powerlevel10k theme
+    echo "Installing powerlevel10k theme"
+    # install powerlevel10k theme
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    # remove existing ZSH_THEME in .zshrc
+    sed -i '/ZSH_THEME/d' ~/.zshrc
+
+    # print applying powerlevel10k theme
+    echo "Applying powerlevel10k theme"
+    echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\"" >> ~/.zshrc
+
+    # if install neovim
+    if [ "$neovimSetup" = "y" ]; then
+        # add alias in .zshrc
+        echo "alias nvim='~/nvim.appimage'" >> ~/.zshrc
+    fi
+    
+    # if nvm is "y" then add export NVM_DIR="$HOME/.nvm" to .zshrc again
+    if [ $nvm = "y" ]; then
+        echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"' >> ~/.zshrc
+        echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.zshrc
+    fi
 fi
