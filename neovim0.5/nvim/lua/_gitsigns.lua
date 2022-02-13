@@ -58,7 +58,8 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  use_internal_diff = true,  -- If vim.diff or luajit is present
+  -- for windows, set use_internal_diff as false
+  use_internal_diff = false,  -- If vim.diff or luajit is present
   yadm = {
     enable = false
   },
