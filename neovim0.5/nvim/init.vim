@@ -16,7 +16,7 @@ set undodir=~/.nvim/undodir
 set undofile
 set incsearch
 set signcolumn=yes
-"set clipboard=unnamed
+set clipboard=unnamed
 set cursorline
 " set mouse=a
 
@@ -55,7 +55,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
 
-    Plug 'tomtom/tcomment_vim'
+    Plug 'b3nj5m1n/kommentary'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -70,7 +70,10 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'morhetz/gruvbox'
     Plug 'mhartington/formatter.nvim'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'easymotion/vim-easymotion'
+    Plug 'nvim-treesitter/playground'
+    Plug 'github/copilot.vim'
+    " Plug 'Yggdroot/indentLine'
+    Plug 'justinmk/vim-sneak'
 call plug#end()
 
 colorscheme PaperColor
@@ -83,7 +86,7 @@ colorscheme gruvbox
 set background=dark
 
 let mapleader = " "
-imap jk <Esc>l
+imap jk <Esc>
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 nnoremap <leader>w :w! <CR>
@@ -126,6 +129,7 @@ nnoremap <Leader>f :Rg <C-R><C-W><CR>
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -139,7 +143,8 @@ nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 
-nmap <Leader>s <Plug>(easymotion-overwin-f)
+" on press of Alt+Shift+f, run :Format
+nnoremap <silent> <A-S-f> :Format<CR>
 
 nnoremap Y y$
 " copy relative path
@@ -149,6 +154,18 @@ nnoremap <leader>Y :let @+ = expand("%:p")<CR>
 " copy just filename
 nnoremap yn :let @+ = expand("%:t")<CR>
 
+" replace mappings:
+" execute the command :%s/\\/\//g on leader rb
+nnoremap <leader>rb :%s/\\/\//g<CR>
+" replace \\n with newline on leader rn
+nnoremap <leader>rn :%s/\\n/\r/g<CR>
+" replace \\t with tab on leader rt
+nnoremap <leader>rt :%s/\\t/\t/g<CR>
+
+" Gitsigns mapping
+" nnoremap <leader>hp :Gitsigns preview_hunk<CR>
+" nnoremap <leader>hs :Gitsigns stage_hunk<CR>
+
 autocmd FileType python
             \ nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> |
             \ vnoremap <buffer><silent><leader>l "lyoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> 
@@ -157,8 +174,14 @@ autocmd FileType javascript
             \ vnoremap <buffer><silent><leader>l "lyoconsole.info(<C-R>l);<Esc>
 
 vnoremap > >gv
+vnoremap < <gv
 
 tnoremap <leader><Esc> <C-\><C-n>
+
+" Completing settings
+" Use <Tab> and <S-Tab> to navigate through popup menu
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
@@ -176,9 +199,7 @@ imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvi
 " the way of showing buffer keymapping
 let g:neomux_yank_buffer_map = "<Leader><Leader>by"
 let g:neomux_paste_buffer_map = "<Leader><Leader>bp"
-let g:neomux_winswap_map_prefix = "<Leader><Leader>s"
-let g:neomux_term_sizefix_map = "<Leader><Leader>sf"
-let g:neomux_start_term_map = "<Leader><Leader>sh"
+
 
 """
 lua <<EOF
