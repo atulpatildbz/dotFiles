@@ -18,7 +18,7 @@ set incsearch
 set signcolumn=yes
 set clipboard=unnamed
 set cursorline
-" set mouse=a
+set mouse=a
 
 let g:netrw_bufsettings = 'relativenumber nu'
 
@@ -27,7 +27,8 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'kabouzeid/nvim-lspinstall'
+    " Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'glepnir/lspsaga.nvim'
     " Install nvim-cmp
     Plug 'hrsh7th/nvim-cmp'
@@ -73,10 +74,14 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-treesitter/playground'
     Plug 'github/copilot.vim'
     " Plug 'Yggdroot/indentLine'
+    Plug 'David-Kunz/jester'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'maxmellon/vim-jsx-pretty'
     Plug 'justinmk/vim-sneak'
+    Plug 'kyazdani42/nvim-web-devicons' " for file icons
 call plug#end()
 
-colorscheme PaperColor
+" colorscheme PaperColor
 " lua require('colorbuddy').colorscheme('gruvbuddy')
 " set background=dark " or light if you want light mode
 
@@ -125,15 +130,16 @@ nnoremap <Leader>rg :lua require'telescope.builtin'.live_grep{}<CR>
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
 
 " using fzf for now. keep checking if telescope works in future
-nnoremap <Leader>f :Rg <C-R><C-W><CR>
+nnoremap <Leader>f :lua require'telescope.builtin'.grep_string{}<CR>
+nnoremap gr :lua require'telescope.builtin'.lsp_references{}<CR>
 
 " >> Lsp key bindings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K     <cmd>Lspsaga hover_doc<CR>
+nnoremap <silent> K     :Lspsaga hover_doc<CR>
 "nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-k> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
@@ -142,11 +148,15 @@ nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
 xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
 nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
+nnoremap <silent> <leader><Tab> gt
+nnoremap <silent> <S-Tab> gT
+nnoremap <silent> gh   <cmd>Lspsaga show_line_diagnostics<CR>
 
 " on press of Alt+Shift+f, run :Format
 nnoremap <silent> <A-S-f> :Format<CR>
 
 nnoremap Y y$
+nnoremap <leader>d "_d
 " copy relative path
 nnoremap yp :let @+ = expand("%")<CR>
 " copy full path
@@ -162,6 +172,11 @@ nnoremap <leader>rn :%s/\\n/\r/g<CR>
 " replace \\t with tab on leader rt
 nnoremap <leader>rt :%s/\\t/\t/g<CR>
 
+nnoremap <leader>tf :lua require"jester".run_file({path_to_jest = 'npm run test', dap = {runtimeArgs = {'--no-coverage'}}})<CR>
+nnoremap <leader>tn :lua require"jester".run({path_to_jest = 'npm run test', dap = {runtimeArgs = {'--no-coverage'}}})<CR>
+
+nnoremap <c-b> :Vex 30<cr>
+
 " Gitsigns mapping
 " nnoremap <leader>hp :Gitsigns preview_hunk<CR>
 " nnoremap <leader>hs :Gitsigns stage_hunk<CR>
@@ -175,6 +190,7 @@ autocmd FileType javascript
 
 vnoremap > >gv
 vnoremap < <gv
+vnoremap <leader>p "_dP
 
 tnoremap <leader><Esc> <C-\><C-n>
 
@@ -201,15 +217,13 @@ let g:neomux_yank_buffer_map = "<Leader><Leader>by"
 let g:neomux_paste_buffer_map = "<Leader><Leader>bp"
 
 
-"""
-lua <<EOF
+lua << EOF
 require("lsp")
 require("treesitter")
 require("statusbar")
--- require("_completion")
 require("_gitsigns")
+-- require("_completion")
 EOF
-"""
 
 "luafile ~/.config/nvim/lua/lsp.lua
 
@@ -257,3 +271,4 @@ require("lsp-colors").setup({
   Hint = "#10B981"
 })
 EOF
+
