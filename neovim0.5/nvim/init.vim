@@ -80,6 +80,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'justinmk/vim-sneak'
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
+    Plug 'nono/vim-handlebars'
 call plug#end()
 
 " colorscheme PaperColor
