@@ -175,8 +175,8 @@ nnoremap <leader>rn :%s/\\n/\r/g<CR>
 " replace \\t with tab on leader rt
 nnoremap <leader>rt :%s/\\t/\t/g<CR>
 
-nnoremap <leader>tf :lua require"jester".run_file({path_to_jest = 'npm run test', dap = {runtimeArgs = {'--no-coverage'}}})<CR>
-nnoremap <leader>tn :lua require"jester".run({path_to_jest = 'npm run test', dap = {runtimeArgs = {'--no-coverage'}}})<CR>
+" nnoremap <leader>rg :vs | term npm run generate
+nnoremap <leader>rg :vs \| term npm run generate -- --bypass=true
 
 nnoremap <leader>tf :lua require"jester".run_file({cmd = "npm run test -- $file --coverage=False", path_to_jest = 'npm run test'})<CR>
 nnoremap <leader>tn :lua require"jester".run({cmd = "npm run test -- $file -t '$result' --coverage=False", path_to_jest = 'npm run test' })<CR>
