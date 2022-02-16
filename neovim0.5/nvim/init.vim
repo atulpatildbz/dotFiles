@@ -182,6 +182,8 @@ nnoremap <leader>tf :lua require"jester".run_file({cmd = "npm run test -- $file 
 nnoremap <leader>tn :lua require"jester".run({cmd = "npm run test -- $file -t '$result' --coverage=False", path_to_jest = 'npm run test' })<CR>
 
 " nnoremap <c-b> :Vex 30<cr>
+nnoremap <C-Left> :vertical resize -5<cr>
+nnoremap <C-Right> :vertical resize +5<cr>
 
 " Gitsigns mapping
 " nnoremap <leader>hp :Gitsigns preview_hunk<CR>
