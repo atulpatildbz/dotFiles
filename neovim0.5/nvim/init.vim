@@ -120,7 +120,7 @@ nnoremap <Leader>/ :lua require'telescope.builtin'.current_buffer_fuzzy_find{}<C
 nnoremap <Leader>' :lua require'telescope.builtin'.marks{}<CR>
 
 " git files
-nnoremap <C-p> :lua require'telescope.builtin'.git_files{}<CR>
+nnoremap <C-p> :lua require'telescope.builtin'.git_files({layout_strategy='vertical'})<CR>
 
 " all files
 " nnoremap <Leader>bfs :lua require'telescope.builtin'.find_files{}<CR>
@@ -131,8 +131,9 @@ nnoremap <Leader>rg :lua require'telescope.builtin'.live_grep{}<CR>
 " pick color scheme
 nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
 
+let g:fzf_preview_window = ''
 " using fzf for now. keep checking if telescope works in future
-nnoremap <Leader>f :lua require'telescope.builtin'.grep_string{}<CR>
+nnoremap <Leader>f :lua require'telescope.builtin'.grep_string({layout_strategy='vertical'})<CR>
 nnoremap gr :lua require'telescope.builtin'.lsp_references{}<CR>
 
 " >> Lsp key bindings
