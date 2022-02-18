@@ -121,7 +121,7 @@ keymap("i", "<C-k>", "<C-p>", opts)
 
 keymap("v", ">", ">gv", opts)       -- keep selection after indent right 
 keymap("v", "<", "<gv", opts)       -- keep selection after indent left 
-keymap("v", "p", "_dP", opts)       -- do not yank after paste
+keymap("v", "p", "\"_dP", opts)       -- do not yank after paste
 
 
 -----------------------------------------------------------------------------------------------------------------------
