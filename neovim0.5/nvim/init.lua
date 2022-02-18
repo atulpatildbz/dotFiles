@@ -92,60 +92,7 @@ imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : pumvisible() ? "\<C-n>" : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvisible() ? "\<C-p>" : '<S-Tab>'
 
-lua << EOF
-require("lsp")
-require("treesitter")
-require("statusbar")
-require("_gitsigns")
--- require("_completion")
-EOF
-
 "luafile ~/.config/nvim/lua/lsp.lua
-
-lua << EOF
--- require'lspconfig'.pyright.setup{}
--- require'lspconfig'.tsserver.setup{}
--- require'lspconfig'.pylsp.setup{}
-local nvim_lsp = require('lspconfig')
-local on_attach = require('completion').on_attach
-local servers = {
-    'tsserver',
-    'pylsp',
-    }
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
-        }
-    }
-end
-
-
-require('formatter').setup({
-  filetype = {
-    javascript = {
-      -- prettier
-      function()
-        return {
-          exe = "prettier",
-          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-          stdin = true
-        }
-      end
-    },
-  }
-})
-EOF
-
-lua << EOF
-require("lsp-colors").setup({
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
-})
-EOF
 
 
 " tree
@@ -219,8 +166,56 @@ nnoremap <C-b> :NvimTreeFindFile<CR>
 
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
+]])
 
-lua << EOF
+require("lsp")
+require("treesitter")
+require("statusbar")
+require("_gitsigns")
+-- require("_completion")
+--
+
+-- require'lspconfig'.pyright.setup{}
+-- require'lspconfig'.tsserver.setup{}
+-- require'lspconfig'.pylsp.setup{}
+local nvim_lsp = require('lspconfig')
+local on_attach = require('completion').on_attach
+local servers = {
+    'tsserver',
+    'pylsp',
+    }
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        }
+    }
+end
+
+
+require('formatter').setup({
+  filetype = {
+    javascript = {
+      -- prettier
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+          stdin = true
+        }
+      end
+    },
+  }
+})
+
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})
+
 require'nvim-tree'.setup {
   disable_netrw        = true,
   hijack_netrw         = true,
@@ -289,5 +284,3 @@ require'nvim-tree'.setup {
     }
   }
 }
-EOF
-]])
