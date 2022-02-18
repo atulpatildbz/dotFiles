@@ -108,6 +108,7 @@ require("treesitter")
 require("statusbar")
 require("_gitsigns")
 require("formatter_config")
+require("nvim-tree_config")
 -- require("_completion")
 --
 
