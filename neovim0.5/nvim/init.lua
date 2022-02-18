@@ -1,4 +1,5 @@
 require("options")
+require("keymaps")
 
 vim.cmd([[
 " syntax on
@@ -72,109 +73,6 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = '0'
 colorscheme gruvbox
 
-let mapleader = " "
-imap jk <Esc>
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-nnoremap <leader>w :w! <CR>
-nnoremap <leader>q :q! <CR>
-nnoremap <leader>n :noh<cr>
-map! <S-Insert> <C-R>+
-nnoremap <C-n> :tabnew <CR>
-nnoremap <C-T> :tab split<Cr>
-nnoremap <leader>v :e $MYVIMRC<cr>
-
-" >> Telescope bindings
-nnoremap <Leader>pp :lua require'telescope.builtin'.builtin{}<CR>
-
-" most recentuly used files
-nnoremap <Leader>m :lua require'telescope.builtin'.oldfiles{}<CR>
-
-" find buffer
-nnoremap <Leader>b :lua require'telescope.builtin'.buffers{}<CR>
-
-" find in current buffer
-nnoremap <Leader>/ :lua require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>
-
-" bookmarks
-nnoremap <Leader>' :lua require'telescope.builtin'.marks{}<CR>
-
-" git files
-nnoremap <C-p> :lua require'telescope.builtin'.git_files({layout_strategy='vertical'})<CR>
-
-" all files
-" nnoremap <Leader>bfs :lua require'telescope.builtin'.find_files{}<CR>
-
-" ripgrep like grep through dir
-nnoremap <Leader>rg :lua require'telescope.builtin'.live_grep({layout_strategy='vertical'})<CR>
-
-" pick color scheme
-nnoremap <Leader>cs :lua require'telescope.builtin'.colorscheme{}<CR>
-
-nnoremap <Leader>: :lua require'telescope.builtin'.command_history{}<CR>
-
-let g:fzf_preview_window = ''
-" using fzf for now. keep checking if telescope works in future
-nnoremap <Leader>f :lua require'telescope.builtin'.grep_string({layout_strategy='vertical'})<CR>
-nnoremap gr :lua require'telescope.builtin'.lsp_references({layout_strategy='vertical'})<CR>
-
-" >> Lsp key bindings
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K     :Lspsaga hover_doc<CR>
-"nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-k> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> gf    <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> ga    <cmd>Lspsaga code_action<CR>
-xnoremap <silent> ga    <cmd>Lspsaga range_code_action<CR>
-nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
-nnoremap <silent> <leader><Tab> gt
-nnoremap <silent> <S-Tab> gT
-nnoremap <silent> gh   <cmd>Lspsaga show_line_diagnostics<CR>
-
-" on press of Alt+Shift+f, run :Format
-nnoremap <silent> <A-S-f> :Format<CR>
-
-nnoremap Y y$
-nnoremap <leader>d "_d
-" copy relative path
-nnoremap yp :let @+ = expand("%")<CR>
-" copy full path
-nnoremap <leader>Y :let @+ = expand("%:p")<CR>
-" copy just filename
-nnoremap yn :let @+ = expand("%:t")<CR>
-
-" on press of leader t and n, run 'npm run test <relative path of current file> --coverage=False' in a vertical split terminal
-nnoremap <leader>tp :!npm run test <cword> --coverage=False<CR>
-
-" replace mappings:
-" execute the command :%s/\\/\//g on leader rb
-nnoremap <leader>rb :%s/\\/\//g<CR>
-" replace \\n with newline on leader rn
-nnoremap <leader>rn :%s/\\n/\r/g<CR>
-" replace \\t with tab on leader rt
-nnoremap <leader>rt :%s/\\t/\t/g<CR>
-
-" run 'npm run generate' on leader rg
-" nnoremap <leader>rrg :vs | term npm run generate
-nnoremap <leader>rrg :vs \| term npm run generate -- --bypass=true
-
-nnoremap <leader>tf :lua require"jester".run_file({cmd = "npm run test -- $file --coverage=False", path_to_jest = 'npm run test'})<CR>
-nnoremap <leader>tn :lua require"jester".run({cmd = "npm run test -- $file -t '$result' --coverage=False", path_to_jest = 'npm run test' })<CR>
-
-" nnoremap <c-b> :Vex 30<cr>
-nnoremap <C-Left> :vertical resize -5<cr>
-nnoremap <C-Right> :vertical resize +5<cr>
-
-" Gitsigns mapping
-" nnoremap <leader>hp :Gitsigns preview_hunk<CR>
-" nnoremap <leader>hs :Gitsigns stage_hunk<CR>
-
 autocmd FileType python
             \ nnoremap <buffer><silent><leader>l "lyiwoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> |
             \ vnoremap <buffer><silent><leader>l "lyoSyncLog.info("***AtulLog <C-R>l: %s", <C-R>l)<Esc> 
@@ -187,30 +85,12 @@ autocmd!
 au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
 augroup END
 
-vnoremap > >gv
-vnoremap < <gv
-vnoremap p "_dP
-
-tnoremap <leader><Esc> <C-\><C-n>
-
-" Completing settings
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
 
 " Snippets mapping
 " Expand or jump
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : pumvisible() ? "\<C-n>" : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvisible() ? "\<C-p>" : '<S-Tab>'
-
-" overwriting these values by adding extra <Leader> so that it doesn't get in
-" the way of showing buffer keymapping
-let g:neomux_yank_buffer_map = "<Leader><Leader>by"
-let g:neomux_paste_buffer_map = "<Leader><Leader>bp"
-
 
 lua << EOF
 require("lsp")
