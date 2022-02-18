@@ -2,6 +2,7 @@ require("options")
 require("keymaps")
 require("plugins")
 require("autocmd")
+require("colorscheme_config")
 
 vim.cmd([[
 " syntax on
