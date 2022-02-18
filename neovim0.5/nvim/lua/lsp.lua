@@ -87,6 +87,25 @@ setup_servers() ]]
 end ]]
 
 
-require'lspconfig'.tsserver.setup{}
+local nvim_lsp = require('lspconfig')
+local on_attach = require('completion').on_attach
+local servers = {
+    'tsserver',
+    'pylsp',
+    }
+for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        }
+    }
+end
 
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})
 
