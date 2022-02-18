@@ -1,70 +1,10 @@
 require("options")
 require("keymaps")
+require("plugins")
 
 vim.cmd([[
 " syntax on
 let g:netrw_bufsettings = 'relativenumber nu'
-
-call plug#begin(stdpath('data') . 'vimplug')
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'neovim/nvim-lspconfig'
-    " Plug 'kabouzeid/nvim-lspinstall'
-    Plug 'williamboman/nvim-lsp-installer'
-    Plug 'glepnir/lspsaga.nvim'
-    " Install nvim-cmp
-    Plug 'hrsh7th/nvim-cmp'
-
-    " Install snippet engine (This example installs [hrsh7th/vim-vsnip](https://github.com/hrsh7th/vim-vsnip))
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/vim-vsnip-integ'
-
-    " Install the buffer completion source
-    Plug 'hrsh7th/cmp-buffer'
-
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-
-    Plug 'glepnir/galaxyline.nvim', { 'branch': 'main' }
-    Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
-    Plug 'kyazdani42/nvim-tree.lua'
-
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'nikvdp/neomux'
-
-    Plug 'tpope/vim-ragtag'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-unimpaired'
-
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-fugitive'
-
-    Plug 'b3nj5m1n/kommentary'
-    Plug 'lewis6991/gitsigns.nvim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'nvim-lua/completion-nvim'
-
-    Plug 'tjdevries/colorbuddy.vim'
-    " Plug 'tjdevries/gruvbuddy.nvim'
-
-    " Plug 'rktjmp/lush.nvim'
-    " Plug 'ellisonleao/gruvbox.nvim'
-    Plug 'folke/lsp-colors.nvim'
-    Plug 'morhetz/gruvbox'
-    Plug 'mhartington/formatter.nvim'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'nvim-treesitter/playground'
-    Plug 'github/copilot.vim'
-    " Plug 'Yggdroot/indentLine'
-    Plug 'David-Kunz/jester'
-    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'justinmk/vim-sneak'
-    Plug 'kyazdani42/nvim-web-devicons' " for file icons
-    Plug 'nono/vim-handlebars'
-call plug#end()
 
 " colorscheme PaperColor
 " lua require('colorbuddy').colorscheme('gruvbuddy')
@@ -86,14 +26,7 @@ au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=2
 augroup END
 
 
-" Snippets mapping
-" Expand or jump
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : pumvisible() ? "\<C-n>" : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : pumvisible() ? "\<C-p>" : '<S-Tab>'
-
 "luafile ~/.config/nvim/lua/lsp.lua
-
 
 " tree
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
