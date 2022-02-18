@@ -1,6 +1,7 @@
 require("options")
 require("keymaps")
 require("plugins")
+require("autocmd")
 
 vim.cmd([[
 " syntax on
