@@ -34,3 +34,9 @@ vim.opt.shortmess:append "c"                            -- Avoid showing message
 for key, value in pairs(options) do
     vim.opt[key] = value
 end
+
+vim.g.fzf_preview_window = ""
+
+-- overwriting these values by adding extra <Leader> so that it doesn't get in the way of showing buffer keymapping
+vim.g.neomux_yank_buffer_map = "<Leader><Leader>by"
+vim.g.neomux_paste_buffer_map = "<Leader><Leader>bp"
