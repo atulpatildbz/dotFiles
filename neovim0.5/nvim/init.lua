@@ -107,6 +107,7 @@ require("lsp")
 require("treesitter")
 require("statusbar")
 require("_gitsigns")
+require("formatter_config")
 -- require("_completion")
 --
 
