@@ -67,6 +67,8 @@ keymap("n", "<leader>:", ":lua require'telescope.builtin'.command_history{}<CR>"
 keymap("n", "<leader>f", ":lua require'telescope.builtin'.grep_string({layout_strategy='vertical'})<CR>", opts)
 keymap("n", "gr", ":lua require'telescope.builtin'.lsp_references({layout_strategy='vertical'})<CR>", opts)
 
+keymap("n", "<C-b>", ":NvimTreeFindFile<CR>", opts)
+
 -- LSP keybindings
 --  These options can be optimized later to only load the lsp when needed
 
