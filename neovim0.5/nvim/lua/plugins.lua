@@ -88,7 +88,7 @@ return packer.startup(function(use)
     use 'folke/lsp-colors.nvim'
     use {'morhetz/gruvbox', config= "vim.cmd('colorscheme gruvbox')" }
     use 'mhartington/formatter.nvim'
-    use 'jiangmiao/auto-pairs'
+    use {'windwp/nvim-autopairs', config = "require('nvim-autopairs').setup{}"}
     use 'nvim-treesitter/playground'
     use 'github/copilot.vim'
     use 'David-Kunz/jester'
