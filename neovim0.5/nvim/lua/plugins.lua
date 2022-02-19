@@ -11,7 +11,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
+  -- print the install path
+  print(install_path)
   vim.cmd [[packadd packer.nvim]]
 end
 
@@ -93,9 +94,9 @@ return packer.startup(function(use)
     use 'github/copilot.vim'
     use 'David-Kunz/jester'
     -- use 'folke/tokyonight.nvim', { 'branch': 'main' }
-    use 'maxmellon/vim-jsx-pretty'
+    use {'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact' } }
     use 'justinmk/vim-sneak'
-    use 'nono/vim-handlebars'
+    use {'mustache/vim-mustache-handlebars', ft = 'handlebars'}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
