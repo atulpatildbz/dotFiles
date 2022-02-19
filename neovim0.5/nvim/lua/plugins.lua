@@ -86,7 +86,7 @@ return packer.startup(function(use)
     use 'tjdevries/colorbuddy.vim'
 
     use 'folke/lsp-colors.nvim'
-    use 'morhetz/gruvbox'
+    use {'morhetz/gruvbox', config= "vim.cmd('colorscheme gruvbox')" }
     use 'mhartington/formatter.nvim'
     use 'jiangmiao/auto-pairs'
     use 'nvim-treesitter/playground'
