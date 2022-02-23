@@ -19,7 +19,7 @@ local options = {
     softtabstop = 4,
     shiftwidth = 4,
     -- string
-    mouse = "a",
+    -- mouse = "a",
     background = "dark",
     undodir = "~/.nvim/undodir",
     signcolumn = "yes",
