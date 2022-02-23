@@ -101,6 +101,7 @@ return packer.startup(function(use)
     use {'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact' } }
     use 'justinmk/vim-sneak'
     use {'mustache/vim-mustache-handlebars', ft = 'handlebars'}
+    use {'kevinhwang91/nvim-bqf'}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
