@@ -58,13 +58,15 @@ keymap("n", "<leader>v", ":e $MYVIMRC<cr>", opts)       -- open vimrc
 keymap("n", "<leader>p", ":lua require'telescope.builtin'.builtin{}<CR>", opts)
 keymap("n", "<leader>m", ":lua require'telescope.builtin'.oldfiles{}<CR>", opts)                                -- most recentuly used files
 keymap("n", "<leader>b", ":lua require'telescope.builtin'.buffers{}<CR>", opts)                                 -- find buffer
-keymap("n", "<leader>/", ":lua require'telescope.builtin'.current_buffer_fuzzy_find({layout_strategy='vertical'})<CR>", opts)               -- find in current buffer       
+keymap("n", "<leader>/", ":lua require'telescope.builtin'.current_buffer_fuzzy_find({layout_strategy='vertical'})<CR>", opts) -- find in current buffer       
 keymap("n", "<leader>'", ":lua require'telescope.builtin'.marks{}<CR>", opts)                                   -- find bookmarks   
 keymap("n", "<C-p>", ":lua require'telescope.builtin'.git_files({layout_strategy='vertical'})<CR>", opts)       -- git files
 keymap("n", "<leader>rg", ":lua require'telescope.builtin'.live_grep({layout_strategy='vertical'})<CR>", opts)  -- ripgrep like grep through dir 
 keymap("n", "<leader>cs", ":lua require'telescope.builtin'.colorscheme{}<CR>", opts)                            -- colorscheme
 keymap("n", "<leader>:", ":lua require'telescope.builtin'.command_history{}<CR>", opts)
 keymap("n", "<leader>f", ":lua require'telescope.builtin'.grep_string({layout_strategy='vertical'})<CR>", opts)
+-- search in open files
+keymap("n", "<leader>gb", ":lua require('telescope.builtin').live_grep({grep_open_files=true, layout_strategy='vertical'})<CR>", opts)
 keymap("n", "gr", ":lua require'telescope.builtin'.lsp_references({layout_strategy='vertical'})<CR>", opts)
 
 keymap("n", "<C-b>", ":NvimTreeFindFile<CR>", opts)
@@ -102,6 +104,7 @@ nnoremap <leader>rt :%s/\\t/\t/g<CR>    " replace tab with tab
 
 -- run terminal commands
 keymap("n", "<leader>rrg", ":vs | term npm run generate -- --bypass=true", {noremap = true})
+keymap("n", "<leader>rrp", ":vs | term python %", {noremap = true})
 
 -- jest
 keymap("n", "<leader>tf", ":lua require'jester'.run_file({cmd = 'npm run test -- $file --coverage=False', path_to_jest = 'npm run test'})<CR>", opts)
@@ -116,6 +119,7 @@ keymap("n", "<A-S-f>", ":Format<CR>", opts) -- on press of Alt+Shift+f, run :For
 keymap("i", "jk", "<Esc>", opts)
 keymap("i", "<C-j>", "<C-n>", opts)
 keymap("i", "<C-k>", "<C-p>", opts)
+vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
 
 
 -----------------------------------------------------------------------------------------------------------------------
