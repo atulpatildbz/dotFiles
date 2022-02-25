@@ -89,21 +89,36 @@ return packer.startup(function(use)
     use 'tjdevries/colorbuddy.vim'
 
     use 'folke/lsp-colors.nvim'
-    use {'morhetz/gruvbox', config= "vim.cmd('colorscheme gruvbox')" }
+    use 'morhetz/gruvbox'
+    use 'sainnhe/gruvbox-material'
+    use 'tomasiser/vim-code-dark'
+    use 'folke/tokyonight.nvim'
+    use {
+      'lourenci/github-colors',
+        branch = 'main',
+    }
+    use 'sainnhe/sonokai'
+    use 'mhartington/oceanic-next'
+    use 'rockerBOO/boo-colorscheme-nvim'
+    use 'tanvirtin/monokai.nvim'
+    use 'sainnhe/everforest'
+    use 'projekt0n/github-nvim-theme'
+
     use 'mhartington/formatter.nvim'
     use {'windwp/nvim-autopairs', config = "require('nvim-autopairs').setup{}"}
     use 'nvim-treesitter/playground'
     use 'github/copilot.vim'
     use 'David-Kunz/jester'
     -- use 'folke/tokyonight.nvim', { 'branch': 'main' }
-    use {'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact' } }
+    -- enable jsx pretty only if you're working with a colorscheme that doesn't have treesitter support
+    -- use {'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact' } }
     use 'justinmk/vim-sneak'
     use {'mustache/vim-mustache-handlebars', ft = 'handlebars'}
     use {'kevinhwang91/nvim-bqf'}
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+ if PACKER_BOOTSTRAP then
+   require("packer").sync()
+ end
 end)
