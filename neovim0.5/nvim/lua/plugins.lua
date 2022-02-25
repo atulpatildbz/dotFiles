@@ -64,10 +64,8 @@ return packer.startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     use {
-      'glepnir/galaxyline.nvim',
-        branch = 'main',
-        -- some optional icons
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
