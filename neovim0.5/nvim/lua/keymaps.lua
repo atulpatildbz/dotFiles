@@ -103,9 +103,7 @@ nnoremap <leader>rt :%s/\\t/\t/g<CR>    " replace tab with tab
 ]])
 
 -- run terminal commands
-keymap("n", "<leader>rrg", ":vs | term npm run generate -- --bypass=true", {noremap = true})
-keymap("n", "<leader>rrp", ":vs | term python %", {noremap = true})
-
+keymap("n", "<leader>rr", ":lua vimCustomRunner()<CR>", { noremap = true, silent = true })
 -- jest
 keymap("n", "<leader>tf", ":lua require'jester'.run_file({cmd = 'npm run test -- $file --coverage=False', path_to_jest = 'npm run test'})<CR>", opts)
 keymap("n", "<leader>tn", ":lua require'jester'.run({cmd = 'npm run test -- $file -t $result --coverage=False', path_to_jest = 'npm run test' })<CR>", opts)
@@ -132,4 +130,10 @@ keymap("v", "p", "\"_dP", opts)       -- do not yank after paste
 
 -----------------------------------------------------------------------------------------------------------------------
 -- Terminal mode --
-keymap("t", "<leader><Esc>", "<C-\\><C-n>", opts)
+-- keymap("t", "<leader><Esc>", "<C-\\><C-n>", opts)
+keymap('t', '<esc>', [[<C-\><C-n>]], opts)
+keymap('t', 'jk', [[<C-\><C-n>]], opts)
+keymap('t', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+keymap('t', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+keymap('t', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+keymap('t', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
