@@ -93,7 +93,7 @@ keymap("n", "<leader>d", "\"_d", opts)
 -- Yank file 
 keymap("n", "<leader>Y", ":let @+ = expand('%:p')<CR>", opts)       -- copy full path
 keymap("n", "yn", ":let @+ = expand('%:t')<CR>", opts)              -- copy just filename
-keymap("n", "yp", ":let @+ = expand('%:p')<CR>", opts)              -- copy relative path
+keymap("n", "yp", ":let @+ = expand('%')<CR>", opts)                -- copy relative path
 
 -- replace text. 
 vim.cmd([[
@@ -103,7 +103,7 @@ nnoremap <leader>rt :%s/\\t/\t/g<CR>    " replace tab with tab
 ]])
 
 -- run terminal commands
-keymap("n", "<leader>rr", ":lua vimCustomRunner()<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>rr", ":lua vimCustomRunner()<CR>", opts)
 -- jest
 keymap("n", "<leader>tf", ":lua require'jester'.run_file({cmd = 'npm run test -- $file --coverage=False', path_to_jest = 'npm run test'})<CR>", opts)
 keymap("n", "<leader>tn", ":lua require'jester'.run({cmd = 'npm run test -- $file -t $result --coverage=False', path_to_jest = 'npm run test' })<CR>", opts)
