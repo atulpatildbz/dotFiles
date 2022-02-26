@@ -1,3 +1,4 @@
+require("custom_functions")
 require("options")
 require("keymaps")
 require("plugins")
