@@ -112,10 +112,11 @@ return packer.startup(function(use)
     -- use 'folke/tokyonight.nvim', { 'branch': 'main' }
     -- enable jsx pretty only if you're working with a colorscheme that doesn't have treesitter support
     -- use {'maxmellon/vim-jsx-pretty', ft = { 'javascript', 'javascriptreact' } }
-    use 'justinmk/vim-sneak'
+    -- use 'justinmk/vim-sneak'
     use {'mustache/vim-mustache-handlebars', ft = 'handlebars'}
     use {'kevinhwang91/nvim-bqf'}
     use {"akinsho/toggleterm.nvim"}
+    use "phaazon/hop.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
