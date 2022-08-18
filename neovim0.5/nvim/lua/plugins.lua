@@ -48,7 +48,10 @@ return packer.startup(function(use)
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
-    use 'glepnir/lspsaga.nvim'
+    use {
+      'glepnir/lspsaga.nvim',
+        branch = 'main',
+    }
 
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
