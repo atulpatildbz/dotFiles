@@ -110,6 +110,7 @@ keymap("n", "<leader>tn", ":lua require'jester'.run({cmd = 'npm run test -- $fil
 
 -- Misc
 keymap("n", "<A-S-f>", ":Format<CR>", opts) -- on press of Alt+Shift+f, run :Format 
+-- keymap("n", "<A-S-f>", ":lua vim.lsp.buf.formatting_sync()<CR>", opts)
 
 -----------------------------------------------------------------------------------------------------------------------
 -- Insert mode --
