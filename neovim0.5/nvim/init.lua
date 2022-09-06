@@ -30,3 +30,18 @@ endfunction
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 ]]
+
+-- command "GitDiffToFiles" should execute the following commands
+-- :v/diff --git/d
+-- :%s/diff --git a\/
+-- :%s/ .*
+-- :sort u
+vim.cmd[[
+function! GitDiffToFiles()
+    :silent v/diff --git/d
+    :silent %s/diff --git a\/
+    :silent %s/ .*
+    :silent sort u
+endfunction
+:command! GitDiffToFiles :call GitDiffToFiles()
+]]
