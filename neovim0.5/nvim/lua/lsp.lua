@@ -3,13 +3,13 @@
 -- Note: You can set a prefix per lsp server in the lv-globals.lua file
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
+      virtual_text = true,
     --[[ virtual_text = {
       prefix = "",
       spacing = 0,
     },
-    signs = true,
-    underline = true, ]]
+    signs = true, ]]
+    underline = true,
   }
 )
 -- symbols for autocomplete
@@ -88,7 +88,7 @@ end ]]
 
 
 local nvim_lsp = require('lspconfig')
-local on_attach = require('completion').on_attach
+-- local on_attach = require('completion').on_attach
 local servers = {
     'tsserver',
     'pylsp',
@@ -96,13 +96,21 @@ local servers = {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-        on_attach = on_attach,
+        -- on_attach = on_attach,
         flags = {
             debounce_text_changes = 150,
         },
         capabilities = capabilities
     }
 end
+
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    --[[ server = { -- pass options to lspconfig's setup method
+        on_attach = ...,
+    }, ]]
+})
 
 require("lsp-colors").setup({
   Error = "#db4b4b",
