@@ -57,7 +57,7 @@ keymap("n", "<leader>v", ":e $MYVIMRC<cr>", opts)       -- open vimrc
 -- Telescope keybindings
 keymap("n", "<leader>p", ":lua require'telescope.builtin'.builtin{}<CR>", opts)
 keymap("n", "<leader>m", ":lua require'telescope.builtin'.oldfiles{}<CR>", opts)                                -- most recentuly used files
-keymap("n", "<leader>b", ":lua require'telescope.builtin'.buffers{}<CR>", opts)                                 -- find buffer
+keymap("n", "<leader>b", ":lua require'telescope.builtin'.buffers({layout_strategy='vertical'})<CR>", opts)     -- find buffer
 keymap("n", "<leader>/", ":lua require'telescope.builtin'.current_buffer_fuzzy_find({layout_strategy='vertical'})<CR>", opts) -- find in current buffer       
 keymap("n", "<leader>'", ":lua require'telescope.builtin'.marks{}<CR>", opts)                                   -- find bookmarks   
 keymap("n", "<C-p>", ":lua require'telescope.builtin'.git_files({layout_strategy='vertical'})<CR>", opts)       -- git files
@@ -66,7 +66,7 @@ keymap("n", "<leader>cs", ":lua require'telescope.builtin'.colorscheme{}<CR>", o
 keymap("n", "<leader>:", ":lua require'telescope.builtin'.command_history{}<CR>", opts)
 keymap("n", "<leader>f", ":lua require'telescope.builtin'.grep_string({layout_strategy='vertical'})<CR>", opts)
 -- search in open files
-keymap("n", "<leader>gb", ":lua require('telescope.builtin').live_grep({grep_open_files=true, layout_strategy='vertical'})<CR>", opts)
+keymap("n", "<leader>of", ":lua require('telescope.builtin').live_grep({grep_open_files=true, layout_strategy='vertical'})<CR>", opts)
 keymap("n", "gr", ":lua require'telescope.builtin'.lsp_references({layout_strategy='vertical'})<CR>", opts)
 
 keymap("n", "<C-b>", ":NvimTreeFindFile<CR>", opts)
