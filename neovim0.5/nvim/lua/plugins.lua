@@ -108,6 +108,7 @@ return packer.startup(function(use)
     use 'projekt0n/github-nvim-theme'
 
     use 'mhartington/formatter.nvim'
+    use {'jose-elias-alvarez/null-ls.nvim', config = 'require("null-ls").setup({ sources = { require("null-ls").builtins.formatting.prettier }})'}
     use {'windwp/nvim-autopairs', config = "require('nvim-autopairs').setup{}"}
     use 'nvim-treesitter/playground'
     use 'github/copilot.vim'
@@ -122,6 +123,7 @@ return packer.startup(function(use)
     use "phaazon/hop.nvim"
     use "romainl/vim-qf"
 
+    use "jose-elias-alvarez/typescript.nvim"
     use "vim-test/vim-test"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
