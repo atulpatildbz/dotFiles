@@ -123,9 +123,9 @@ return packer.startup(function(use)
     use {"akinsho/toggleterm.nvim"}
     use "phaazon/hop.nvim"
     use "romainl/vim-qf"
-
     use "jose-elias-alvarez/typescript.nvim"
     use "vim-test/vim-test"
+    use "windwp/nvim-spectre"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
  if PACKER_BOOTSTRAP then

@@ -49,3 +49,7 @@ end
 -- to execute the function
 -- vimCustomRunner()
 -- colors(require("telescope.themes").get_dropdown{})
+
+
+-- create command for spectre
+vim.cmd [[command! -nargs=0 Spectre :lua require('spectre').open()]]
