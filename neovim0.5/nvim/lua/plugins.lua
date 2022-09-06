@@ -88,7 +88,7 @@ return packer.startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     -- use 'junegunn/fzf', { 'do': { -> fzf#install() } }
     use 'junegunn/fzf.vim'
-    use 'nvim-lua/completion-nvim'
+    -- use 'nvim-lua/completion-nvim'
 
     use 'tjdevries/colorbuddy.vim'
 
