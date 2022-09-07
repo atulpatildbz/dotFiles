@@ -15,6 +15,7 @@ require("formatter_config")
 require("nvim-tree_config")
 require("toggleTerm_config")
 require("hop_config")
+require("spectre_config")
 
 vim.cmd[[
 " When using `dd` in the quickfix list, remove the item from the quickfix list.
