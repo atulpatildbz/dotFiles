@@ -1,33 +1,5 @@
 {
-  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
-  "editor.minimap.enabled": false,
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "editor.formatOnSave": false,
-  "terminal.integrated.scrollback": 2000,
-  "explorer.confirmDelete": false,
-  "files.eol": "\n",
-  "tabnine.experimentalAutoImports": true,
-  // save and run in case prettier fails
-  "saveAndRun": {
-    "commands": [
-      {
-        "match": ".*\\.js",
-        "cmd": "prettier --write ${file}"
-      }
-    ]
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.lineNumbers": "relative",
-  "editor.tabCompletion": "on",
-  // vim settings
+  "editor.inlineSuggest.enabled": true,
   "vim.handleKeys": {
     "<C-f>": false,
     "<C-a>": false,
@@ -42,16 +14,16 @@
     {
       "before": ["C-k"],
       "after": ["C-p"]
-    },
-    {
-      "before": ["C-j"],
-      "commands": ["editor.action.insertSnippet"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["s"],
-      "after": ["<leader>", "<leader>", "s"]
+      "after": ["<leader>", "<leader>", "2", "s"]
+    },
+    {
+      "before": ["<space>", "/"],
+      "after": ["<leader>", "<leader>", "/"]
     },
     {
       "before": ["<space>", "d"],
@@ -73,10 +45,10 @@
       "before": ["<space>", "q"],
       "commands": [":q!"]
     },
-    {
-      "before": ["<space>", "s"],
-      "after": ["<space>", "<space>", "s"]
-    },
+    // {
+    //   "before": ["<space>", "s"],
+    //   "after": ["<space>", "<space>", "s"]
+    // },
     {
       "before": ["<space>", "n"],
       "commands": [":noh"]
@@ -107,19 +79,6 @@
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": ["<space>", "t", "f"],
-      "after": [],
-      "commands": [
-        { "command": "runInTerminal.run", "args": { "name": "f" } },
-        "workbench.action.terminal.toggleTerminal"
-      ]
-    },
-    {
-      "before": ["<space>", "t", "w"],
-      "after": [],
-      "commands": [{ "command": "runInTerminal.run", "args": { "name": "w" } }]
-    },
-    {
       "before": ["<space>", "y", "p"],
       "commands": ["copyRelativeFilePath"]
     },
@@ -136,12 +95,20 @@
       "commands": ["workbench.action.editor.previousChange"]
     },
     {
-      "before": ["<space>", "m"],
+      "before": ["<space>", "m", "c"],
+      "commands": ["bookmarks.toggleLabeled"]
+    },
+    {
+      "before": ["<space>", "m", "m"],
       "commands": ["bookmarks.toggle"]
     },
     {
-      "before": ["<space>", "b"],
+      "before": ["<space>", "m", "l"],
       "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
+      "before": ["<space>", "m", "d"],
+      "commands": ["bookmarks.clear"]
     },
     // this undo redo is temporary fix, keep checking https://github.com/VSCodeVim/Vim/issues/1490 for solution
     {
@@ -164,10 +131,10 @@
       "before": ["<S-y>"],
       "after": ["y", "$"]
     },
-    {
-      "before": ["n"],
-      "after": ["n", "z", "z"]
-    },
+    // {
+    //   "before": ["n"],
+    //   "after": ["n", "z", "z"]
+    // },
     {
       "before": ["<space>", "l", "f"],
       "after": ["A"],
@@ -193,6 +160,48 @@
         },
         "extension.vim_escape"
       ]
+    },
+    {
+      "before": ["<space>", "l", "t"],
+      "after": ["y", "i", "w", "A"],
+      "commands": [
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "snippet": "\nconsole.time(\"${CLIPBOARD}: \");\nconsole.timeEnd(\"${CLIPBOARD}: \");"
+          }
+        },
+        "extension.vim_escape"
+      ]
+    },
+    {
+      "before": ["<space>", "h", "p"],
+      "commands": ["editor.action.dirtydiff.next"]
+    },
+    {
+      "before": ["<space>", "h", "s"],
+      "commands": ["git.stageSelectedRanges"]
+    },
+    // copy the file name on <space>yn. Required extension: https://marketplace.visualstudio.com/items?itemName=bradzacher.vscode-copy-filename
+    {
+      "before": ["<space>", "y", "n"],
+      "commands": ["extension.copyFileNameOfActiveFile"]
+    },
+    {
+      "before": ["C-j"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["C-k"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": ["<space>", "t", "f"],
+      "commands": ["extension.runJest"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -207,6 +216,22 @@
     {
       "before": ["<"],
       "after": ["<", "g", "v"]
+    },
+    {
+      "before": ["g", "t"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["g", "T"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<tab>"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<S-tab>"],
+      "commands": ["workbench.action.previousEditor"]
     }
   ],
   "vim.easymotion": true,
@@ -218,44 +243,88 @@
   "vim.leader": "\\",
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
-  "files.autoSave": "off",
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
-  "jestRunIt.jestCLIOptions": ["--coverage=false"],
-  "workbench.colorTheme": "Gruvbox Dark Hard",
-  "runInTerminal.commands": [
-    {
-      "match": "test\\.js$",
-      "name": "f",
-      "cmd": "npm test -- ${relativeFile} --coverage=false"
-    },
-    { "match": "test\\.js$", "name": "w", "cmd": "npm test -- --watch" }
-  ],
-  "window.title": "${dirty}${activeEditorMedium}${separator}${appName}",
-  "glassit.alpha": 250,
-  "remote.SSH.remotePlatform": {
-    "172.16.21.186": "linux",
-    "172.16.20.236": "linux",
-    "172.16.21.186atulp": "linux",
-    "172.16.23.9juhi": "linux",
-    "172.16.13.113param": "linux",
-    "172.16.22.151": "linux",
-    "172.16.22.151atulp2": "linux",
-    "172.16.20.236aayush": "linux",
-    "172.16.23.102": "linux",
-    "172.16.21.69piyush2": "linux",
-    "172.16.23.102atulp2": "linux"
-  },
-  "remote.SSH.configFile": "C:\\Users\\atul.patil\\.ssh\\config",
-  "[handlebars]": {
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.renderWhitespace": "none",
-  "notebook.cellToolbarLocation": {
-    "default": "right",
-    "jupyter-notebook": "left"
+  "prettier.configPath": ".prettierrc",
+  "tabnine.experimentalAutoImports": true,
+  "remote.SSH.remotePlatform": {
+    "172.16.23.173_expires_on_11th_Oct": "linux",
+    "172.16.21.70expires11Nov-garden": "linux",
+    "172.16.22.228expires24Nov-black-canary": "linux",
+    "172.16.21.223aayush": "linux",
+    "172.16.24.153expires2Dec-donna-troy": "linux",
+    "172.16.23.177atulp": "linux",
+    "172.16.25.221": "linux",
+    "172.16.25.221visalia-hulk": "linux",
+    "172.16.25.7": "linux",
+    "172.16.22.7": "linux",
+    "172.16.22.98naas": "linux",
+    "172.16.23.119darwin": "linux",
+    "172.16.22.28devonport": "linux",
+    "172.16.22.179waterbury": "linux",
+    "172.16.23.54atulp2": "linux",
+    "172.16.73.4mariya": "linux",
+    "172.16.21.221juhicloud": "linux"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
-  "terminal.integrated.fontFamily": "DejaVuSansMono Nerd Font"
+  "jestRunIt.jestCLIOptions": ["--coverage=False"],
+  "editor.wordWrap": "on",
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": true,
+    "markdown": false
+  },
+  "workbench.colorCustomizations": {
+    "[Material Theme Darker]": {
+      "activityBarBadge.background": "#F44336",
+      "activityBar.activeBorder": "#F44336",
+      "list.activeSelectionForeground": "#F44336",
+      "list.inactiveSelectionForeground": "#F44336",
+      "list.highlightForeground": "#F44336",
+      "scrollbarSlider.activeBackground": "#F4433650",
+      "editorSuggestWidget.highlightForeground": "#F44336",
+      "textLink.foreground": "#F44336",
+      "progressBar.background": "#F44336",
+      "pickerGroup.foreground": "#F44336",
+      "tab.activeBorder": "#F44336",
+      "notificationLink.foreground": "#F44336",
+      "editorWidget.resizeBorder": "#F44336",
+      "editorWidget.border": "#F44336",
+      "settings.modifiedItemIndicator": "#F44336",
+      "settings.headerForeground": "#F44336",
+      "panelTitle.activeBorder": "#F44336",
+      "breadcrumb.activeSelectionForeground": "#F44336",
+      "menu.selectionForeground": "#F44336",
+      "menubar.selectionForeground": "#F44336",
+      "editor.findMatchBorder": "#F44336",
+      "selection.background": "#F4433640",
+      "statusBarItem.remoteBackground": "#F44336"
+    }
+  },
+  "materialTheme.accent": "Tomato",
+  "cSpell.userWords": ["cnames"],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
+  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\atul.patil\\AppData\\Local\\nvim\\init.lua",
+  "terminal.integrated.scrollback": 25000,
+  "editor.cursorBlinking": "solid",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "jestrunner.jestCommand": "jest --verbose",
+  "jestrunner.runOptions": ["--no-coverage"],
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": -1,
+  // "editor.cursorSurroundingLines": 5
 }
