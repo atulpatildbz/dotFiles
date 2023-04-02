@@ -56,7 +56,7 @@
     {
       "before": ["<space>", "f"],
       "after": ["v", "i", "w"],
-      "commands": ["workbench.action.findInFiles"]
+      "commands": ["workbench.action.findInFiles", "extension.vim_escape"]
     },
     {
       "before": ["<space>", "<right>"],
@@ -202,6 +202,10 @@
     {
       "before": ["<space>", "t", "f"],
       "commands": ["extension.runJest"]
+    },
+    {
+      "before": ["<space>", ";"],
+      "commands": ["editor.action.formatDocument"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -219,18 +223,22 @@
     },
     {
       "before": ["g", "t"],
+      "after": ["<Esc>"],
       "commands": ["workbench.action.nextEditor"]
     },
     {
       "before": ["g", "T"],
+      "after": ["<Esc>"],
       "commands": ["workbench.action.previousEditor"]
     },
     {
       "before": ["<tab>"],
+      "after": ["<Esc>"],
       "commands": ["workbench.action.nextEditor"]
     },
     {
       "before": ["<S-tab>"],
+      "after": ["<Esc>"],
       "commands": ["workbench.action.previousEditor"]
     }
   ],
@@ -250,7 +258,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.configPath": ".prettierrc",
-  "tabnine.experimentalAutoImports": true,
   "remote.SSH.remotePlatform": {
     "172.16.23.173_expires_on_11th_Oct": "linux",
     "172.16.21.70expires11Nov-garden": "linux",
@@ -305,19 +312,15 @@
       "statusBarItem.remoteBackground": "#F44336"
     }
   },
-  "materialTheme.accent": "Tomato",
   "cSpell.userWords": ["cnames"],
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
-  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\atul.patil\\AppData\\Local\\nvim\\init.lua",
   "terminal.integrated.scrollback": 25000,
   "editor.cursorBlinking": "solid",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "jestrunner.jestCommand": "jest --verbose",
   "jestrunner.runOptions": ["--no-coverage"],
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -325,6 +328,10 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "window.zoomLevel": -1,
-  // "editor.cursorSurroundingLines": 5
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
