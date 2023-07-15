@@ -1,5 +1,6 @@
 {
   "editor.inlineSuggest.enabled": true,
+  "explorer.openEditors.visible": 0,
   "vim.handleKeys": {
     "<C-f>": false,
     "<C-a>": false,
@@ -206,6 +207,15 @@
     {
       "before": ["<space>", ";"],
       "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<space>", "b"],
+      "commands": [
+        {
+          "command": "workbench.action.quickOpen",
+          "args": "edt "
+        }
+      ]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -259,23 +269,6 @@
   },
   "prettier.configPath": ".prettierrc",
   "remote.SSH.remotePlatform": {
-    "172.16.23.173_expires_on_11th_Oct": "linux",
-    "172.16.21.70expires11Nov-garden": "linux",
-    "172.16.22.228expires24Nov-black-canary": "linux",
-    "172.16.21.223aayush": "linux",
-    "172.16.24.153expires2Dec-donna-troy": "linux",
-    "172.16.23.177atulp": "linux",
-    "172.16.25.221": "linux",
-    "172.16.25.221visalia-hulk": "linux",
-    "172.16.25.7": "linux",
-    "172.16.22.7": "linux",
-    "172.16.22.98naas": "linux",
-    "172.16.23.119darwin": "linux",
-    "172.16.22.28devonport": "linux",
-    "172.16.22.179waterbury": "linux",
-    "172.16.23.54atulp2": "linux",
-    "172.16.73.4mariya": "linux",
-    "172.16.21.221juhicloud": "linux"
   },
   "jestRunIt.jestCLIOptions": ["--coverage=False"],
   "editor.wordWrap": "on",
@@ -333,5 +326,10 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "gitlens.views.searchAndCompare.files.layout": "tree",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "editor.rename.enablePreview": false,
+  "workbench.editor.enablePreview": false,
+  "editor.renderControlCharacters": false
 }
