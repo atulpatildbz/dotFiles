@@ -2,7 +2,14 @@
     #email = 
     #name = 
 [alias]
-    co = checkout
     s = status
     branch-name = "!git rev-parse --abbrev-ref HEAD"
-    po = "!git push -u origin $(git branch-name)"
+
+	# Push to the remote associated with 'atulpatildbz'
+	po = "!f() { remote=$(git remote -v | grep 'atulpatildbz' | head -n1 | awk '{print $1}'); branch=$(git rev-parse --abbrev-ref HEAD); if [ -n \"$remote\" ]; then git push \"$remote\" \"$branch\"; else echo \"Error: Remote for atulpatildbz not found.\"; exit 1; fi; }; f"
+
+	# Checkout a branch. Handles 'user:branch' by finding the remote for 'user' and checking out 'remote/branch'.
+	co = "!f() { arg=$1; if [[ \"$arg\" == *:* ]]; then user=${arg%%:*}; branch=${arg#*:}; remote=$(git remote -v | grep -i \"$user\" | head -n1 | awk '{print $1}'); target=${remote:-$user}; git checkout \"$target/$branch\"; else git checkout \"$arg\"; fi; }; f"
+
+	# Checkout a new branch. Handles 'user:branch'. Checks for existing local branch, backs it up if unique commits exist, or resets it if clean.
+	cob = "!f() { arg=$1; if [[ \"$arg\" == *:* ]]; then user=${arg%%:*}; branch=${arg#*:}; remote=$(git remote -v | grep -i \"$user\" | head -n1 | awk '{print $1}'); remote=${remote:-$user}; target=\"$remote/$branch\"; local=\"$user-$branch\"; if ! git rev-parse --verify \"$target\" >/dev/null 2>&1; then echo \"Error: Remote branch $target not found.\"; return 1; fi; if git show-ref --verify --quiet \"refs/heads/$local\"; then if [ -n \"$(git log \"$target..$local\" --oneline 2>/dev/null)\" ]; then backup=\"$local-backup-$(date +%Y%m%d%H%M%S)\"; echo \"Backing up $local to $backup\"; git branch -m \"$local\" \"$backup\"; git checkout -b \"$local\" \"$target\"; else echo \"Resetting clean branch $local\"; git checkout -B \"$local\" \"$target\"; fi; else git checkout -b \"$local\" \"$target\"; fi; else git checkout -b \"$arg\"; fi; }; f"
